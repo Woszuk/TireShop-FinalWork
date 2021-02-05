@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://thymeleaf.org" >
+<section class="banner__sign-in">
+    <img class="banner__sign-in--close" src="images/icon/close-button.svg">
+    <div class="sign-in__container">
+        <h2 class="sign-in__header">Zaloguj się</h2>
+        <form method="post" action="/signin" class="sign-in__form">
+            <div class="sign-in__form-item">
+                <div class="sign-in__field">
+                    <input name="username" class="sign-in__form-input" required>
+                    <label class="sign-in__form-label sign-in">Nazwa użytkownika</label>
+                </div>
+                <div class="sign-in__field">
+                    <input type="password" name="password" class="sign-in__form-input" required>
+                    <label class="sign-in__form-label sign-in">Hasło</label>
+                </div>
+                <button class="sign-in__form-button">Zaloguj się</button>
+            </div>
+        </form>
+    </div>
+    <div class="sign-in__check">
+        <div class="sign-in__check-field">
+            <p class="sign-in__check-paragraph">Zapomniałem hasła</p>
+        </div>
+        <div class="sign-in__check-field">
+            <p class="sign-in__check-paragraph register">Załóż konto</p>
+        </div>
+    </div>
+</section>
+</html>
+
