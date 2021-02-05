@@ -1,0 +1,47 @@
+.bookmark {
+    background-image: url("/images/person/opinion.jpg");
+    background-position: top;
+    background-size: 20em;
+    padding: 80px 0;
+    height: 100px;
+    color: #fff;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 0;
+}
+
+@media(max-width: 767px) {
+    .bookmark {
+        background-size: 12.3em;
+        padding: 50px 0;
+    }
+} 
+
+
+.bookmark::after {
+    position: absolute;
+    content: "";
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(34, 34, 34, 0.4);
+    z-index: -1;
+}
+
+.bookmark__header {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 45px; 
+    text-align: center;
+}
+
+@media(max-width: 767px) {
+    .bookmark__header {
+        font-size: 24px; 
+    }
+    
+}
+

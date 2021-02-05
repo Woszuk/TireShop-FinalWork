@@ -1,0 +1,81 @@
+.my-account__menu {
+    margin: auto;
+    width: 100%;
+    max-width: 1300px;
+}
+
+.my-account__menu-container {
+    padding-top: 120px;
+    display: flex;
+    justify-content: center;
+}
+
+
+@media(max-width: 767px){
+    .my-account__menu-container {
+        padding-top: 70px;
+    }
+}
+
+@media(max-width: 909px){
+    .my-account__menu-container {
+        flex-wrap: wrap;
+    }
+}
+
+.my-account__left {
+    width: 25%;
+    border-right: 1px solid #666;
+    margin-right: 10px;
+}
+
+@media(max-width: 909px) {
+    .my-account__left {
+        width: 80%;
+        border-right: initial;
+        border-bottom: 1px solid #666;
+    }
+}
+
+.my-account__menu-list {
+    margin: 50px 10px 50px 0;
+    list-style: none;
+}
+
+@media(max-width: 909px) {
+    .my-account__menu-list {
+        margin: 0 0 20px;
+    }
+}
+
+.my-account__item--link {
+    border-left: 4px solid white;
+    padding: 10px 10px;
+    display: block;
+    text-decoration: none;
+    color: #555;
+    font-size: 22px;
+    position: relative;
+}
+
+@media(max-width: 909px) {
+    .my-account__item--link {
+        text-align: center;
+        border: initial;
+    }
+}
+
+@media(min-width: 909px) {
+    .my-account__item--link:hover {
+        background: #ccc;
+        color: black;
+        border-left: 4px solid rgb(22, 97, 235);
+    }
+}
+
+.my-account__menu-item.active .my-account__item--link {
+    background: #aaa;
+    color: black;
+    border-left: 4px solid rgb(22, 97, 235);
+}
+

@@ -1,0 +1,37 @@
+.my-account__form-input {
+    padding: 5px;
+}
+
+.postalCode1 {
+    text-align: center;
+    width: 30px;
+}
+
+.postalCode2 {
+    text-align: center;
+    width: 40px;
+}
+
+.my-account__form-error{
+    width: 100%;
+    white-space: normal;
+    color: red;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.my-account__form-button {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    font-size: 20px;
+    border: 1px solid black;
+    box-shadow: 0 0 10px #ccc;
+    background-color: #555;
+    cursor: pointer;
+    color: white;
+}
+
+.my-account__form-button:hover {
+    background-color: #333;
+}

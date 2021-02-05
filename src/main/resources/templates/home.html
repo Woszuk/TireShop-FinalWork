@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wulkanizacja Edek</title>
+
+    <link rel="icon" type="image/x-icon" href="/images/icon/tire.svg">
+    <link rel="stylesheet" href="/css/global.css">
+    <link rel="stylesheet" href="/css/main-navigation.css">
+    <link rel="stylesheet" href="/css/sign-in.css">
+    <link rel="stylesheet" href="/css/main-banner.css">
+    <link rel="stylesheet" href="/css/container.css">
+    <link rel="stylesheet" href="/css/about-us.css">
+    <link rel="stylesheet" href="/css/price-list.css">
+    <link rel="stylesheet" href="/css/opinion.css">
+    <link rel="stylesheet" href="/css/contact.css">
+    <link rel="stylesheet" href="/css/bookmark.css">
+    <link rel="stylesheet" href="/css/route.css">
+    <link rel="stylesheet" href="/css/footer.css">
+
+</head>
+
+<body>
+<section class="banner__sign-in">
+    <img class="banner__sign-in--close" src="images/icon/close-button.svg">
+    <div class="sign-in__container">
+        <h2 class="sign-in__header">Zaloguj się</h2>
+        <form class="sign-in__form">
+            <div class="sign-in__form-item">
+                <div class="sign-in__field">
+                    <input name="name" class="sign-in__form-input" required>
+                    <label class="sign-in__form-label">Nazwa użytkownika</label>
+                </div>
+                <div class="sign-in__field">
+                    <input type="password" name="password" class="sign-in__form-input" required>
+                    <label class="sign-in__form-label">Hasło</label>
+                </div>
+                <button class="sign-in__form-button">Zaloguj się</button>
+            </div>
+        </form>
+    </div>
+    <div class="sign-in__check">
+        <div class="sign-in__check-field">
+            <p class="sign-in__check-paragraph">Zapomniałem hasła</p>
+        </div>
+        <div class="sign-in__check-field">
+            <p class="sign-in__check-paragraph register">Załóż konto</p>
+        </div>
+    </div>
+</section>
+
+<section class="banner__sign-in banner__register">
+    <img class="banner__sign-in--close banner__register--close" src="images/icon/close-button.svg">
+    <div class="sign-in__container">
+        <h2 class="sign-in__header">Rejestracja</h2>
+        <form class="sign-in__form">
+            <div class="sign-in__form-item">
+                <div class="sign-in__field">
+                    <input name="first_name" class="sign-in__form-input" required>
+                    <label class="sign-in__form-label">Imię</label>
+                </div>
+                <div class="sign-in__field">
+                    <input name="surname" class="sign-in__form-input" required>
+                    <label class="sign-in__form-label">Nazwisko</label>
+                </div>
+                <div class="sign-in__field">
+                    <input name="email" class="sign-in__form-input" required>
+                    <label class="sign-in__form-label">Email</label>
+                </div>
+                <div class="sign-in__field">
+                    <input name="name" class="sign-in__form-input" required>
+                    <label class="sign-in__form-label">Nazwa użytkownika</label>
+                </div>
+                <div class="sign-in__field">
+                    <input type="password" name="password" class="sign-in__form-input" required>
+                    <label class="sign-in__form-label">Hasło</label>
+                </div>
+                <div class="sign-in__field">
+                    <input type="password" name="password2" class="sign-in__form-input" required>
+                    <label class="sign-in__form-label">Powtórz hasło</label>
+                </div>
+                <button class="sign-in__form-button">Zarejestruj</button>
+            </div>
+        </form>
+    </div>
+    <div class="sign-in__check register">
+        <div class="sign-in__check-field register">
+            <p class="sign-in__check-paragraph-register">Masz już konto? <span
+                    class="sign-in__check-paragraph">Zaloguj się</span>
+        </div>
+    </div>
+</section>
+
+<div class="scroll">
+
+
+    <nav class="main-navigation">
+
+        <div class="main-navigation__inner">
+
+            <div class="main-navigation__logo">
+                <a href="#" class="main-navigation__logo-link">
+                    <img src="/images/icon/logo.svg" alt="logo" class="main-navigation__logo-image">
+                    Edek
+                </a>
+            </div>
+            <ul class="main-navigation__menu">
+                <img class="main-navigation__menu-mobile--exit" src="images/icon/close-button-white.svg">
+                <li class="main-navigation__menu-item">
+                    <a href="#" class="main-navigation__link">
+                        <div class="main-navigation__menu-item--position">
+                            <img src="/images/icon/home.svg" alt="logo" class="main-navigation__link-image">
+                            <h2 class="main-navigation__link-header">Home</h2>
+                        </div>
+                    </a>
+                </li>
+                <li class="main-navigation__menu-item">
+                    <a href="#contact" class="main-navigation__link">
+                        <div class="main-navigation__menu-item--position">
+                            <img src="/images/icon/contact.svg" alt="logo" class="main-navigation__link-image">
+                            <h2 class="main-navigation__link-header">Kontakt</h2>
+                        </div>
+                    </a>
+                </li>
+                <li class="main-navigation__menu-item">
+                    <a href="#route" class="main-navigation__link">
+                        <div class="main-navigation__menu-item--position">
+                            <img src="/images/icon/route.svg" alt="logo" class="main-navigation__link-image">
+                            <h2 class="main-navigation__link-header">Dojazd</h2>
+                        </div>
+                    </a>
+                </li>
+                <li class="main-navigation__menu-item">
+                    <a href="shop.html" class="main-navigation__link">
+                        <div class="main-navigation__menu-item--position">
+                            <img src="/images/icon/shop.svg" alt="logo" class="main-navigation__link-image">
+                            <h2 class="main-navigation__link-header">Sklep</h2>
+                        </div>
+                    </a>
+                </li>
+                <li class="main-navigation__menu-item">
+                    <a href="basket.html" class="main-navigation__link">
+                        <div class="main-navigation__menu-item--position">
+                            <img src="/images/icon/shopping-basket.svg" alt="logo"
+                                 class="main-navigation__link-image">
+                            <h2 class="main-navigation__link-header">Koszyk</h2>
+                        </div>
+                    </a>
+                </li>
+                <li class="main-navigation__menu-item main-navigation__account-position">
+                    <a class="main-navigation__link">
+                        <div class="main-navigation__menu-item--position">
+                            <img src="/images/icon/user.svg" alt="logo" class="main-navigation__link-image">
+                            <h2 class="main-navigation__link-header">Konto</h2>
+                        </div>
+                    </a>
+                    <div class="main-navigation__account">
+                        <ul class="main-navigation__account-list">
+                            <li class="main-navigation__account-item">
+                                <div class="main-navigation__account-item--link">Zaloguj się</div>
+                            </li>
+                            <li class="main-navigation__account-item">
+                                <div class="main-navigation__account-item--link">Zarejestruj się</div>
+                            </li>
+                            <li class="main-navigation__account-item">
+                                <a href="my-account.html" class="main-navigation__account-item--link">Moje konto</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+            <div class="main-navigation__mobile-account">
+                <img class="main-navigation__menu-mobile--exit" src="images/icon/close-button-white.svg">
+                <a class="main-navigation__link">
+                    <div class="main-navigation__menu-item--position">
+                        <div class="main-navigation__menu-mobile"></div>
+                        <img src="/images/icon/user.svg" alt="logo" class="main-navigation__link-image">
+                        <h2 class="main-navigation__link-header">Konto</h2>
+                    </div>
+                </a>
+                <div class="main-navigation__account--mobile">
+                    <ul class="main-navigation__account-list--mobile">
+                        <li class="main-navigation__account-item">
+                            <div class="main-navigation__account-item--link">Zaloguj się</div>
+                        </li>
+                        <li class="main-navigation__account-item">
+                            <div class="main-navigation__account-item--link">Zarejestruj się</div>
+                        </li>
+                        <li class="main-navigation__account-item">
+                            <a href="my-account.html" class="main-navigation__account-item--link">Moje konto</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <button class="main-navigation__mobile-button js-main-navigation__mobile-button">
+                <img src="images/icon/navigation.svg" alt="Otwórz / zamknij nawigację"
+                     class="main-navigation__mobile-button-image">
+            </button>
+        </div>
+    </nav>
+
+    <section class="main-banner">
+        <div class="main-banner__container">
+            <h3 class="main-banner__header-one">A Ty w jaką trasę się wybierasz?</h3>
+            <h3 class="main-banner__header-two">Krótką, długą, a może wymagającą?</h3>
+            <h3 class="main-banner__header-three">U nas szybko i fachowo przygotujesz swoje koła na każdą podróż
+            </h3>
+        </div>
+        <div class="main-banner__container-link">
+            <a href="#route" class="main-banner__link">Zajrzyj do nas koniecznie</a>
+        </div>
+    </section>
+
+    <div class="container" id="about-us">
+        <section class="about-us">
+            <div class="about-us__text">
+                <h3 class="about-us__header">Doświadczenie, pasja i Twoje zadowolenie</h3>
+                <p class="about-us__paragraph">
+                    Jesteśmy firmą z wieloletnim doświadczeniem, która swoją działaność rozpoczęła w 2001 roku.
+                    W naszej pracy stawiamy na jakość i najwyższe standardy, czego dowodem jest wybór
+                    najlepszych marek specjalizujących się w produkcji ogumienia: Goodyear, Michelin,
+                    Bridgestone, Pirelli, Continental i wiele innych.
+                </p>
+                <div class="about-us__pictures--phone">
+                    <img class="about-us__picture" src="/images/tire-companies/goodyear.png" alt="Goodyear">
+                    <img class="about-us__picture" src="/images/tire-companies/michelin.png" alt="Michelin">
+                    <img class="about-us__picture" src="/images/tire-companies/bridgestone.png" alt="Bridgestone">
+                </div>
+                <p class="about-us__paragraph">
+                    Każdego dnia dokładamy wszelkich starań, aby nasze usługi spełniały Twoje oczekiwania,
+                    ponieważ najważniejsze jest dla nas Twoje zadowolenie i bezpieczeństwo, a koła Twojego auta to
+                    nasz
+                    priorytet.
+                </p>
+                <p class="about-us__paragraph about-us__paragraph-trust">
+                    Zaufało nam tysiące kierowców, zaufaj i Ty!
+                </p>
+            </div>
+            <div class="about-us__pictures">
+                <img class="about-us__picture" src="/images/tire-companies/goodyear.png" alt="Goodyear">
+                <img class="about-us__picture" src="/images/tire-companies/michelin.png" alt="Michelin">
+                <img class="about-us__picture" src="/images/tire-companies/bridgestone.png" alt="Bridgestone">
+            </div>
+        </section>
+        <div id="opinion"></div>
+    </div>
+
+    <div class="bookmark">
+        <h3 class="bookmark__header">Opinie naszych klientów</h3>
+    </div>
+
+    <div class="container">
+        <section class="opinion">
+            <div class="opinions">
+                <div class="opinion__division">
+                    <div class="opinion__division--circle opinion__division--circle--first"></div>
+                    <div class="opinion__division-text">
+                        <h3 class="opinion__division-header">Szymon</h3>
+                        <p class="opinion__division-paragraph">Świetna robota! Szybko, fachowo i co najważniejsze w
+                            bardzo korzystnej cenie. Miejsce godne polecenia!</p>
+                    </div>
+                </div>
+                <div class="opinion__division">
+                    <div class="opinion__division--circle opinion__division--circle--two"></div>
+                    <div class="opinion__division-text">
+                        <h3 class="opinion__division-header">Grzegorz</h3>
+                        <p class="opinion__division-paragraph">Bardzo mili panowie z którymi można porozmawiać i
+                            pożartować. Od lat korzystam z ich usług i zawsze jestem zadowolony. Oby więcej takich
+                            miejsc w Krośnie.</p>
+                    </div>
+                </div>
+                <div class="opinion__division">
+                    <div class="opinion__division--circle opinion__division--circle--three"></div>
+                    <div class="opinion__division-text">
+                        <h3 class="opinion__division-header">Natalia</h3>
+                        <p class="opinion__division-paragraph">Ci panowie to prawdziwi profesjonaliści. Zawsze
+                            wymieniam
+                            tam opony i nigdy się nie zawiodłam. Gorąco polecam!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div id="price-list"></div>
+    </div>
+
+    <div class="price-list__title">
+        <h3 class="price-list__title-header">Cennik</h3>
+    </div>
+    <div class="container--price-list">
+        <section class="price-list">
+            <div class="price-list__container">
+                <div class="price-list__text">
+                    <div class="price-list__text-header">
+                        <h3 class="price-list__header">Osobowe</h3>
+                    </div>
+                    <div class="price-list__paragraph">
+                        <ul class="price-list__list">
+                            <li class="price-list__list-item">
+                                <div class="price-list__list-position">
+                                    <p class="price-list__paragraph-text">Demontaż koła</p>
+                                    <p class="price-list__paragraph-price">5 zł</p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="price-list__list-position">
+                                    <p class="price-list__paragraph-text">Wymiana opony</p>
+                                    <p class="price-list__paragraph-price">6 zł</p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="price-list__list-position">
+                                    <p class="price-list__paragraph-text">Wyważenie koła stal.</p>
+                                    <p class="price-list__paragraph-price">8 zł</p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="price-list__list-position">
+                                    <p class="price-list__paragraph-text">Wyważenie koła alum.</p>
+                                    <p class="price-list__paragraph-price">10 zł</p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="price-list__list-position">
+                                    <p class="price-list__paragraph-text">Dem. + wyważ. stal.</p>
+                                    <p class="price-list__paragraph-price">10 zł</p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="price-list__list-position">
+                                    <p class="price-list__paragraph-text">Dem. + wyważ. alum.</p>
+                                    <p class="price-list__paragraph-price">15 zł</p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="price-list__list-position">
+                                    <p class="price-list__paragraph-text">Obsługa koła stal.</p>
+                                    <p class="price-list__paragraph-price">15 zł</p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="price-list__list-position">
+                                    <p class="price-list__paragraph-text">Obsługa koła alum.</p>
+                                    <p class="price-list__paragraph-price">20 zł</p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="price-list__list-position">
+                                    <p class="price-list__paragraph-text">Obsługa kół stal.</p>
+                                    <p class="price-list__paragraph-price">60 zł</p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="price-list__list-position">
+                                    <p class="price-list__paragraph-text">Obsługa koła alum.</p>
+                                    <p class="price-list__paragraph-price">80 zł</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="price-list__text">
+                    <div class="price-list__text-header">
+                        <h3 class="price-list__header">Dostawcze, terenowe i suv'y</h3>
+                    </div>
+                    <div class="price-list__paragraph">
+                        <ul class="price-list__list">
+                            <li class="price-list__list-item">
+                                <div class="price-list__list-position">
+                                    <p class="price-list__paragraph-text">Demontaż koła</p>
+                                    <p class="price-list__paragraph-price">8 zł</p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="price-list__list-position">
+                                    <p class="price-list__paragraph-text">Wymiana opony</p>
+                                    <p class="price-list__paragraph-price">8 zł</p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="price-list__list-position">
+                                    <p class="price-list__paragraph-text">Wyważenie koła stal.</p>
+                                    <p class="price-list__paragraph-price">10 zł</p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="price-list__list-position">
+                                    <p class="price-list__paragraph-text">Wyważenie koła alum.</p>
+                                    <p class="price-list__paragraph-price">15 zł</p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="price-list__list-position">
+                                    <p class="price-list__paragraph-text">Dem. + wyważ. stal.</p>
+                                    <p class="price-list__paragraph-price">15 zł</p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="price-list__list-position">
+                                    <p class="price-list__paragraph-text">Dem. + wyważ. alum.</p>
+                                    <p class="price-list__paragraph-price">20 zł</p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="price-list__list-position">
+                                    <p class="price-list__paragraph-text">Obsługa koła stal.</p>
+                                    <p class="price-list__paragraph-price">20 zł</p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="price-list__list-position">
+                                    <p class="price-list__paragraph-text">Obsługa koła alum.</p>
+                                    <p class="price-list__paragraph-price">25 zł</p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="price-list__list-position">
+                                    <p class="price-list__paragraph-text">Obsługa kół stal.</p>
+                                    <p class="price-list__paragraph-price">80 zł</p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="price-list__list-position">
+                                    <p class="price-list__paragraph-text">Obsługa koła alum.</p>
+                                    <p class="price-list__paragraph-price">100 zł</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div id="contact"></div>
+    </div>
+
+
+
+
+    <form action="" class="contact-form">
+        <div class="container container--smaller" id="contact">
+            <p class="contact-form__paragraph contact-form__paragraph-one">Porozmawiaj z nami</p>
+            <p class="contact-form__paragraph">lub zadaj nam pytanie</p>
+            <div class="contact-form__info">
+                <div class="contact-form__info-item">
+                    <img src="/images/icon/phone-ringing.svg" alt="Telefon" class="contact-form__info-icon">
+                    <a href="tel:134326862" class="contact-form__info-link">13 432 68 62</a>
+                </div>
+                <div class="contact-form__info-item">
+                    <img src="/images/icon/email.svg" alt="E-mail" class="contact-form__info-icon">
+                    <a href="mailto:edwardhejnar@interia.pl"
+                       class="contact-form__info-link">edwardhejnar@interia.pl</a>
+                </div>
+            </div>
+            <div class="contact-form__fields">
+                <div class="contact-form__send-error contact-form__send-none">
+                    <img src="/images/icon/error.svg" alt="cancel" class="contact-form__send-icon">
+                    <p class="contact-form__error-paragraph">Nieprawidłowe dane</p>
+                </div>
+                <div class="contact-form__send-success contact-form__send-none">
+                    <img src="/images/icon/check.svg" alt="cancel" class="contact-form__send-icon">
+                    <p class="contact-form__success-paragraph">Formularz wysłany prawidłowo</p>
+                </div>
+                <div class="contact-form__fields-position">
+                    <div class="contact-form__fields-input">
+                        <input name="name" class="contact-form__field" required>
+                        <label class="contact-form__field-label">Imię i nazwisko</label>
+                    </div>
+                    <div class="contact-form__fields-input">
+                        <input name="phone" class="contact-form__field" maxlength="11" required>
+                        <label class="contact-form__field-label">Numer telefonu</label>
+                    </div>
+                </div>
+                <div class="contact-form__fields-input">
+                        <textarea name="content" id="" rows="10"
+                                  class="contact-form__field contact-form__field--full-row" required></textarea>
+                    <label class="contact-form__field-label">Treść wiadomości</label>
+                </div>
+            </div>
+            <button class="contact-form__submit-button">Wyślij</button>
+        </div>
+    </form>
+
+    <div class="container-route" id="route">
+        <section class="route">
+            <div class="route-map">
+                <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2581.276272957469!2d21.755128951346848!3d49.68676997927608!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x46864e4fbe4277cc!2sEdek.%20Us%C5%82ugi%20wulkanizacyjne%20i%20sprzeda%C5%BC%20opon.%20Hajner%20E.!5e0!3m2!1spl!2spl!4v1601027717407!5m2!1spl!2spl"
+                        class="route__map-iframe">
+                </iframe>
+            </div>
+            <div class="route-text">
+                <div class="route-text__position">
+                    <h3 class="route-text__header">Godziny otwarcia:</h3>
+                    <p class="route-text__paragraph">
+                        Poniedziałek: 8.00 - 16.00<br>
+                        Wtorek: 8.00 - 16.00<br>
+                        Środa: 8.00 - 16.00<br>
+                        Czwartek: 8.00 - 16.00<br>
+                        Piątek: 8.00 - 16.00<br>
+                        Sobota: zamknięte<br>
+                        Niedziela: zamknięte
+                    </p>
+                </div>
+                <div class="route-text__position">
+                    <h3 class="route-text__location-header">Adres:</h3>
+                    <div class="route-text__location">
+                        <div class="route-text__location-icon">
+                            <img src="/images/icon/location.svg" alt="Lokalizacja"
+                                 class="route-text__location-icon--image">
+                        </div>
+                        <div class="route-text__location-text">
+                            <p class="route-text__location-paragraph">
+                                ul. Balkonowa 11<br>
+                                (wjazd od ul. Podkarpackiej)<br>
+                                38-400 Krosno
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer class="footer">
+        <p class="copyright">
+            Copyright &copy; by Adrian Hejnar - Wszelkie prawa zastrzeżone.
+        </p>
+    </footer>
+    <input type="hidden" id="scroll">
+</div>
+
+<script src="/js/main-navigation.js"></script>
+<script src="/js/price-list.js"></script>
+<script src="/js/phone-number.js"></script>
+<script src="/js/account-navigation.js"></script>
+<script src="/js/test.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,216 @@
+.contact-form {
+    background-image: url("/images/tires2.jpg");
+    background-position: center center;
+    background-size: cover;
+    z-index: 0;
+    position: relative;
+}
+
+.contact-form::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: -1;
+}
+
+.contact-form__paragraph {
+    color: white;
+    text-align: center;
+    font-size: 35px;
+    text-transform: uppercase;
+}
+
+
+@media(max-width: 767px) {
+    .contact-form__paragraph {
+        font-size: 20px;
+    }
+}
+
+.contact-form__paragraph-one {
+    padding: 0 0 5px;
+}
+
+@media(max-width: 768px) {
+    .contact-form__paragraph-one {
+        padding: 0;
+    }
+}
+
+.contact-form__info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 30px 0;
+}
+
+
+@media(max-width: 767px) {
+    .contact-form__info {
+        flex-wrap: wrap;
+    }
+}
+
+.contact-form__info-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 30px;
+}
+
+@media(max-width: 767px) {
+    .contact-form__info-item {
+        width: 100%;
+        margin: 10px 0;
+    }
+}
+
+.contact-form__info-icon {
+    width: 40px;
+    margin-right: 10px;
+}
+
+@media(max-width: 767px) {
+    .contact-form__info-icon {
+        width: 30px;
+    }
+}
+
+.contact-form__info-link {
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+    transition: 0.5s;
+}
+
+@media(max-width: 767px) {
+    .contact-form__info-link {
+        font-size: 16px;
+    }
+}
+
+.contact-form__info-link:hover {
+    transform: translateY(-3px);
+}
+
+.contact-form__fields {
+    --gap: 10px;
+}
+
+.contact-form__send-error,
+.contact-form__send-success {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.contact-form__send-none {
+    display: none;
+}
+
+.contact-form__send-icon {
+    width: 20px;
+    margin-right: 5px;
+}
+
+.contact-form__error-paragraph {
+    color: rgb(255, 0, 0);
+    font-size: 16px;
+}
+
+.contact-form__success-paragraph {
+    color: rgb(0, 255, 0);
+    font-size: 16px;
+}
+
+.contact-form__fields-position {
+    display: flex;
+}
+
+@media(max-width: 767px){
+    .contact-form__fields-position {
+        flex-wrap: wrap;
+    }
+}
+
+.contact-form__fields-input {
+    display: flex;
+    width: 100%;
+    position: relative;
+}
+
+.contact-form__field {
+    width: calc(100% - var(--gap));
+    margin: calc(var(--gap) / 2);
+    padding: 15px;
+    background: transparent;
+    border: 1px solid;
+    color: #eee;
+    font-size: 20px;
+}
+
+.contact-form__field--error {
+    border: 1px solid red;
+}
+
+@media(max-width: 767px) {
+    .contact-form__field {
+        font-size: 16px;
+    }
+}
+
+.contact-form__field--full-row {
+    width: calc(100% - var(--gap));
+}
+
+.contact-form__field-label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: rgba(255, 255, 255, 0.7);
+    padding: 15px;
+    margin: calc(var(--gap) / 2);
+    pointer-events: none;
+    font-size: 20px;
+    transition: 0.5s;
+}
+
+@media(max-width: 767px) {
+    .contact-form__field-label {
+        font-size: 16px;
+    }
+}
+
+.contact-form__field:focus ~ .contact-form__field-label,
+.contact-form__field:valid ~ .contact-form__field-label{
+    top: -12px;
+    font-size: 12px;
+}
+
+.contact-form__submit-button {
+    display: block;
+    margin: 20px auto;
+    padding: 15px 25px;
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid white;
+    color: black;
+    text-transform: uppercase;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.contact-form__submit-button:hover {
+    background-color: rgba(0, 0, 0, 0.9);
+    color: white;
+}
+
+.contact-form__submit-button--disabled {
+   pointer-events: none;
+   cursor: not-allowed;
+}

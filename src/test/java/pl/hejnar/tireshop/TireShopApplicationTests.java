@@ -1,4 +1,4 @@
-package pl.hejnar.TireShop;
+package pl.hejnar.tireshop;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -1,0 +1,201 @@
+.banner__sign-in {
+    display: none;
+    position: fixed;
+    max-width: 450px;
+    width: 90%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 30px 20px;
+    color: #333;
+    background: rgb(255, 255, 255);
+    box-shadow: 0 0 10px #222;
+    z-index: 3;
+}
+
+.banner__sign-in--display {
+    display: initial;
+    position: absolute;
+}
+
+@media(max-height: 515px){
+    .banner__sign-in--display {
+        top: 260px;
+    }
+}
+
+@media(max-height: 805px){
+    .banner__register {
+        top: 400px;
+    }
+}
+
+.banner__sign-in.banner__sign-in--display ~ *{
+    transition: 0.5s;
+    filter: blur(4px);
+    pointer-events: none;
+    user-select: none;
+}
+
+.banner__sign-in ~ * {
+    transition: 0.5s;
+}
+
+.banner__sign-in--close {
+    position: absolute;
+    cursor: pointer;
+    right: 15px;
+    top: 15px;
+    width: 18px;
+}
+
+.sign-in__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.sign-in__form-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sign-in__header {
+    margin-bottom: 20px;
+}
+
+.sign-in__form {
+    width: 100%;
+}
+
+.sign-in__field {
+    position: relative;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.sign-in__field.error {
+    margin-bottom: 10px;
+}
+
+.sign-in__form-input  {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid black;
+    box-shadow: 0 0 10px #ccc;
+    font-size: 16px;
+}
+
+.sign-in__form-label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 15px;
+    pointer-events: none;
+    color: #555;
+    font-size: 16px;
+    transition: 0.5s;
+}
+
+.sign-in__form-input:focus ~ .sign-in__form-label,
+.sign-in__form-input:valid ~ .sign-in__form-label.sign-in {
+    left: -8px;
+    top: -12px;
+    font-size: 12px;
+}
+
+.sign-in__form-input--valid {
+    left: -8px;
+    top: -12px;
+    font-size: 12px;
+}
+
+.sign-in__form-error {
+    color: red;
+    font-size: 14px;
+    margin-left: 10px;
+}
+
+.sign-in__form-error.sign-in {
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.sign-in__form-success {
+    color: rgb(50, 200, 60);
+    text-align: center;
+    font-size: 16px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.sign-in__form-success.logged {
+    margin-bottom: 0;
+    font-size: 20px;
+}
+
+.sign-in__form-button {
+    padding: 10px 20px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    border: 1px solid black;
+    box-shadow: 0 0 10px #ccc;
+    background-color: #555;
+    cursor: pointer;
+    color: white;
+}
+
+.sign-in__form-button:hover {
+    background-color: #333;
+}
+
+.sign-in__check {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sign-in__check.register {
+    justify-content: initial;
+    white-space: nowrap;
+}
+
+.sign-in__check-field{
+    height: 20px;
+}
+
+.sign-in__check-field.register {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    white-space: nowrap;
+}
+
+.sign-in__check-paragraph {
+    cursor: pointer;
+    padding: 2px 0;
+}
+
+.sign-in__check-paragraph:hover {
+    border-bottom: 2px solid black;
+}
+
+.banner__sign-in--display ~ .scroll{
+    height: 100vh;
+    overflow: hidden;
+}
+
+@media(max-height: 639px){
+    .banner__sign-in--display ~ .scroll{
+        height: 40em;
+    }
+}
+
+@media(max-height: 815px){
+    .banner__register.banner__sign-in--display ~ .scroll{
+        height: 50em;
+    }
+}

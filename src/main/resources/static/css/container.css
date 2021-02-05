@@ -1,0 +1,41 @@
+.container {
+    width: 1180px;
+    max-width: 100%;
+    margin: auto;
+    padding: 60px 30px;
+}
+
+@media(max-width: 768px) {
+    .container {
+        padding: 30px 20px;
+    }
+}
+
+.container--smaller {
+    width: 940px;
+}
+
+.container--price-list {
+    width: 1200px;
+    max-width: 100%;
+    margin: auto;
+    padding-top: 50px;
+    padding-bottom: 30px;
+}
+
+.container-route {
+    max-width: 80%;
+    margin: auto;
+}
+
+@media(max-width: 1367px) {
+    .container-route {
+        max-width: 95%;
+    }
+}
+
+@media(max-width: 991px) {
+    .container-route {
+        max-width: 100%;
+    }
+}
