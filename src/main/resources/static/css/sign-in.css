@@ -100,7 +100,7 @@
 }
 
 .sign-in__form-input:focus ~ .sign-in__form-label,
-.sign-in__form-input:valid ~ .sign-in__form-label.sign-in {
+.sign-in__form-input:valid ~ .sign-in__form-label {
     left: -8px;
     top: -12px;
     font-size: 12px;
