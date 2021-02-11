@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="pl" xmlns:th="http://thymeleaf.org" >
-<section class="banner__sign-in">
+<section class="banner__sign-in" th:classappend="${loginError} ? 'banner__sign-in--display': ''">
     <img class="banner__sign-in--close" src="images/icon/close-button.svg">
     <div class="sign-in__container">
         <h2 class="sign-in__header">Zaloguj się</h2>
-        <form method="post" action="signin" class="sign-in__form">
+        <span th:if="${loginError != null}" class="sign-in__form-error sign-in">Nazwa użytkownika lub hasło jest niepoprawne</span>
+        <form method="post" action="login" class="sign-in__form">
             <div class="sign-in__form-item">
                 <div class="sign-in__field">
                     <input name="username" class="sign-in__form-input" required>

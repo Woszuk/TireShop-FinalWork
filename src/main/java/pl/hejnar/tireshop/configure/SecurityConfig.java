@@ -28,7 +28,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.headers().disable();
         http.authorizeRequests()
                 .antMatchers("/**").permitAll()
-                .and().formLogin().loginPage("/signin").defaultSuccessUrl("/somePage")
+                .and().formLogin().loginPage("/login").defaultSuccessUrl("/somePage").failureUrl("/loginError")
                 .and().logout();
     }
 }

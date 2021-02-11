@@ -47,4 +47,10 @@ public class HomeController {
             return "/home";
         }
     }
+
+    @GetMapping("/loginError")
+    public String login(RedirectAttributes redirectAttributes){
+        redirectAttributes.addFlashAttribute("loginError", true);
+        return "redirect:/";
+    }
 }
