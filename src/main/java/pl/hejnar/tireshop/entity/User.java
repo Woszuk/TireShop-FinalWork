@@ -25,7 +25,7 @@ public class User {
     @Pattern(regexp = "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{8,}", message = "Hasło musi zawierać małe i duże litery oraz cyfry")
     private String password;
     private String phoneNumber;
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     private Set<Role> roles;
 
     public User() {

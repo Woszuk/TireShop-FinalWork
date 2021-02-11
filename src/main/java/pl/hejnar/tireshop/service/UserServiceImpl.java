@@ -6,7 +6,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import pl.hejnar.tireshop.entity.Role;
 import pl.hejnar.tireshop.entity.User;
-import pl.hejnar.tireshop.exception.UserCannotBeSavedException;
 import pl.hejnar.tireshop.repository.RoleRepository;
 import pl.hejnar.tireshop.repository.UserRepository;
 
@@ -32,12 +31,19 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void save(User user, Model model, RedirectAttributes redAttr) throws UserCannotBeSavedException  {
+    public void save(User user, RedirectAttributes redAttr) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         Role userRole = roleRepository.findByName("ROLE_USER");
         user.setRoles(new HashSet<>(Collections.singletonList(userRole)));
-        boolean check = false;
 
+        userRepository.save(user);
+        redAttr.addFlashAttribute("someChange", "save");
+        redAttr.addFlashAttribute("successfullyRegistered", "success");
+    }
+
+    @Override
+    public boolean checkUser(User user, Model model) {
+        boolean check = false;
         if(userRepository.findByEmail(user.getEmail()) != null) {
             model.addAttribute("errorEmail", "errorEmail");
             check = true;
@@ -48,15 +54,6 @@ public class UserServiceImpl implements UserService {
             check = true;
         }
 
-
-        if(!check){
-            userRepository.save(user);
-            redAttr.addFlashAttribute("someChange", "save");
-            redAttr.addFlashAttribute("successfullyRegistered", "success");
-        }else {
-            model.addAttribute("someChange", "error");
-            throw new UserCannotBeSavedException("User cannot be saved");
-        }
-
+        return check;
     }
 }

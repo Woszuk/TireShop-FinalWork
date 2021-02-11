@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import pl.hejnar.tireshop.entity.User;
-import pl.hejnar.tireshop.exception.UserCannotBeSavedException;
 import pl.hejnar.tireshop.service.UserServiceImpl;
 
 import javax.validation.Valid;
@@ -34,15 +33,17 @@ public class HomeController {
 
     @PostMapping("/")
     public String registration(@ModelAttribute("user") @Valid User user, BindingResult result, Model model, RedirectAttributes redAttr){
+        boolean check = userService.checkUser(user, model);
+
         if(result.hasErrors()){
             model.addAttribute("someChange", "error");
             return "home";
         }
 
-        try{
-            userService.save(user, model, redAttr);
+        if(!check){
+            userService.save(user, redAttr);
             return "redirect:/";
-        }catch (UserCannotBeSavedException e){
+        }else {
             return "/home";
         }
     }
