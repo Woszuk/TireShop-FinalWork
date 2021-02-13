@@ -48,6 +48,7 @@
                         <img th:src="@{/images/icon/shopping-basket.svg}" alt="logo"
                              class="main-navigation__link-image">
                         <h2 class="main-navigation__link-header">Koszyk</h2>
+                        <span class="main-navigation__link-count" th:if="${session.basket != null}" th:text="${session.basket.size()}"></span>
                     </div>
                 </a>
             </li>

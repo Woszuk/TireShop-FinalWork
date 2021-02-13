@@ -51,7 +51,7 @@ public class ShopController {
     @PostMapping("/addToBasket")
     public String addToBasket(@RequestParam int quantityToBuy, @RequestParam Long productId, @RequestParam Double scrollTo, HttpSession ses){
         ses.setAttribute("scrollTo", scrollTo);
-        shopService.addToBasket(quantityToBuy, productId);
+        shopService.addToBasket(quantityToBuy, productId, ses);
         return redirectToPageService.goToPage(ses);
     }
 }

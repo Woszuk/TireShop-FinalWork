@@ -55,7 +55,7 @@
                                     <div class="menu-shop__content-buy">
                                         <span class="menu-shop__content-span availability">Ilość: </span>
                                         <form th:action="@{/shop/addToBasket}" method="post">
-                                            <select class="menu-shop__select">
+                                            <select class="menu-shop__select" name="quantityToBuy">
                                                 <option th:each="i : ${#numbers.sequence(1,wheelRim.quantity)}"
                                                         th:text="${i} + ' szt.'"
                                                         th:if="${wheelRim.quantity >= 1 AND i<=4}"
