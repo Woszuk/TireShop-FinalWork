@@ -17,8 +17,8 @@ import javax.validation.Valid;
 @Controller
 public class HomeController {
 
-    private UserServiceImpl userService;
-    private RedirectToPageService redirectToPageService;
+    private final UserServiceImpl userService;
+    private final RedirectToPageService redirectToPageService;
 
     public HomeController(UserServiceImpl userService, RedirectToPageService redirectToPageService) {
         this.userService = userService;

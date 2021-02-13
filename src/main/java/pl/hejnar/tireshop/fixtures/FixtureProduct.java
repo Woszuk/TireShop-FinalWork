@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 @Component
 public class FixtureProduct {
 
-    private ProductRepository productRepository;
+    private final ProductRepository productRepository;
 
     public FixtureProduct(ProductRepository productRepository) {
         this.productRepository = productRepository;

@@ -7,7 +7,7 @@ import pl.hejnar.tireshop.repository.RoleRepository;
 @Component
 public class FixtureRole {
 
-    private RoleRepository roleRepository;
+    private final RoleRepository roleRepository;
 
     public FixtureRole(RoleRepository roleRepository) {
         this.roleRepository = roleRepository;

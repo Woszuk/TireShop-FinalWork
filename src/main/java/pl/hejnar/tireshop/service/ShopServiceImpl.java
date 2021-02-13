@@ -1,6 +1,5 @@
 package pl.hejnar.tireshop.service;
 
-import org.hibernate.Hibernate;
 import org.springframework.stereotype.Service;
 import pl.hejnar.tireshop.entity.BasketItem;
 import pl.hejnar.tireshop.repository.BasketItemRepository;
@@ -13,8 +12,8 @@ import java.util.List;
 @Service
 public class ShopServiceImpl implements ShopService {
 
-    private ProductRepository productRepository;
-    private BasketItemRepository basketItemRepository;
+    private final ProductRepository productRepository;
+    private final BasketItemRepository basketItemRepository;
 
     public ShopServiceImpl(ProductRepository productRepository, BasketItemRepository basketItemRepository) {
         this.productRepository = productRepository;

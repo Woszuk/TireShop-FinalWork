@@ -14,9 +14,9 @@ import javax.servlet.http.HttpSession;
 @RequestMapping("/shop")
 public class ShopController {
 
-    private ProductRepository productRepository;
-    private RedirectToPageService redirectToPageService;
-    private ShopServiceImpl shopService;
+    private final ProductRepository productRepository;
+    private final RedirectToPageService redirectToPageService;
+    private final ShopServiceImpl shopService;
 
     public ShopController(ProductRepository productRepository, RedirectToPageService redirectToPageService, ShopServiceImpl shopService) {
         this.productRepository = productRepository;

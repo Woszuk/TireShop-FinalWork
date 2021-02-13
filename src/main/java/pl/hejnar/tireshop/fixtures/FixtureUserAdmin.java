@@ -8,14 +8,12 @@ import pl.hejnar.tireshop.repository.RoleRepository;
 import pl.hejnar.tireshop.repository.UserRepository;
 
 import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
 
 @Component
 public class FixtureUserAdmin {
-    private UserRepository userRepository;
-    private RoleRepository roleRepository;
-    private BCryptPasswordEncoder passwordEncoder;
+    private final UserRepository userRepository;
+    private final RoleRepository roleRepository;
+    private final BCryptPasswordEncoder passwordEncoder;
 
     public FixtureUserAdmin(UserRepository userRepository, RoleRepository roleRepository, BCryptPasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;

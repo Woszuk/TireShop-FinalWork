@@ -6,9 +6,9 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class Fixture {
-    private FixtureRole fixtureRole;
-    private FixtureUserAdmin fixtureUserAdmin;
-    private FixtureProduct fixtureProduct;
+    private final FixtureRole fixtureRole;
+    private final FixtureUserAdmin fixtureUserAdmin;
+    private final FixtureProduct fixtureProduct;
 
     public Fixture(FixtureRole fixtureRole, FixtureUserAdmin fixtureUserAdmin, FixtureProduct fixtureProduct) {
         this.fixtureRole = fixtureRole;
