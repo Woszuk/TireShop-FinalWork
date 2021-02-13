@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wulkanizacja Edek</title>
+
+    <link rel="icon" type="image/x-icon" href="/images/icon/tire.svg">
+    <link rel="stylesheet" href="/css/global.css">
+    <link rel="stylesheet" href="/css/main-navigation.css">
+    <link rel="stylesheet" href="/css/sign-in.css">
+    <link rel="stylesheet" href="/css/shop-banner.css">
+    <link rel="stylesheet" href="/css/tire.css">
+    <link rel="stylesheet" href="/css/wheel-rim.css">
+</head>
+
+<body>
+<section class="banner__sign-in" th:replace="fragments/section-sign-in::section">
+</section>
+
+<section class="banner__sign-in banner__register" th:replace="fragments/section-registration::section">
+</section>
+
+<div class="scroll">
+    <nav class="main-navigation" th:replace="fragments/nav::nav">
+    </nav>
+
+    <section class="shop-banner">
+        <div class="menu-shop">
+            <div th:replace="fragments/div-menu-shop::div"></div>
+            <div class="menu-shop__content">
+                <h2 class="menu-shop__content-header">Felgi</h2>
+                <div class="menu-shop__content-items">
+                    <ul class="menu-shop__content-list">
+                        <li class="menu-shop__content-item" th:each="wheelRim : ${wheelRims}">
+                            <div class="menu-shop__info wheel-rim--info">
+                                <div class="menu-shop__img-position wheel-rim--position">
+                                    <img th:src="@{'/images/wheel-rims/' + ${wheelRim.img}}" alt="wheel-rim"
+                                         class="menu-shop__img wheel-rim--img">
+                                </div>
+                                <div class="menu-shop__content-parameters">
+                                    <span class="menu-shop__content-span producer" th:text="${wheelRim.brand}"></span>
+                                    <span class="menu-shop__content-span model" th:text="${wheelRim.model}"></span>
+                                    <span class="menu-shop__content-span size" th:text="${wheelRim.size}"></span>
+                                </div>
+                            </div>
+                            <div class="menu-shop__content-details">
+                                <div class="menu-shop__content-detail wheel-rim--detail">
+                                        <span class="menu-shop__content-span price">Cena: <strong
+                                                th:text="${wheelRim.price}"></strong>
+                                            zł/szt.</span>
+                                    <span class="menu-shop__content-span availability">Dostępnych sztuk:
+                                            <strong th:text="${wheelRim.quantity}"></strong></span>
+                                    <div class="menu-shop__content-buy">
+                                        <span class="menu-shop__content-span availability">Ilość: </span>
+                                        <form th:action="@{/shop/addToBasket}" method="post">
+                                            <select class="menu-shop__select">
+                                                <option th:each="i : ${#numbers.sequence(1,wheelRim.quantity)}"
+                                                        th:text="${i} + ' szt.'"
+                                                        th:if="${wheelRim.quantity >= 1 AND i<=4}"
+                                                        th:value="${i}" class="menu-shop__select-option"></option>
+                                                <option th:each="i : ${#numbers.sequence(1,4)}" th:text="${i} + ' szt.'"
+                                                        th:if="${wheelRim.quantity < 1}"
+                                                        class="menu-shop__select-option"></option>
+                                            </select>
+                                            <input type="submit" th:if="${wheelRim.quantity >= 1}"
+                                                   class="menu-shop__content-basket" value="Do koszyka"/>
+                                            <input type="submit" th:if="${wheelRim.quantity < 1}"
+                                                   class="menu-shop__content-basket" value="Do koszyka"
+                                                   disabled/>
+                                            <input type="hidden" name="productId" th:value="${wheelRim.id}">
+                                            <input type="hidden" name="scrollTo" th:value="${session.scrollTo}">
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="shop-background"></div>
+</div>
+
+<script src="/js/main-navigation.js"></script>
+<script src="/js/account-navigation.js"></script>
+<script src="/js/sign-in.js"></script>
+<script src="/js/scroll.js"></script>
+</body>
+
+</html>
