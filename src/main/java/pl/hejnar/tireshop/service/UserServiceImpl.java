@@ -37,20 +37,20 @@ public class UserServiceImpl implements UserService {
         user.setRoles(new HashSet<>(Collections.singletonList(userRole)));
 
         userRepository.save(user);
-        redAttr.addFlashAttribute("someChange", "save");
-        redAttr.addFlashAttribute("successfullyRegistered", "success");
+        redAttr.addFlashAttribute("someChange", true);
+        redAttr.addFlashAttribute("successfullyRegistered", true);
     }
 
     @Override
-    public boolean checkUser(User user, Model model) {
+    public boolean checkUser(User user, RedirectAttributes redAttr) {
         boolean check = false;
         if(userRepository.findByEmail(user.getEmail()) != null) {
-            model.addAttribute("errorEmail", "errorEmail");
+            redAttr.addFlashAttribute("errorEmail", true);
             check = true;
         }
 
         if(userRepository.findByUsername(user.getUsername()) != null){
-            model.addAttribute("errorUsername", "errorUserName");
+            redAttr.addFlashAttribute("errorUsername", true);
             check = true;
         }
 

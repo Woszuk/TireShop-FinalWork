@@ -10,5 +10,5 @@ public interface UserService {
 
     void save(User user, RedirectAttributes redAttr);
 
-    boolean checkUser (User user, Model model);
+    boolean checkUser (User user, RedirectAttributes redAttr);
 }

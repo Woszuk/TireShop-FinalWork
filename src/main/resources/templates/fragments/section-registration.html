@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="pl" xmlns:th="http://thymeleaf.org" >
 <section class="banner__sign-in banner__register" th:classappend="${someChange} ? 'banner__sign-in--display': ''">
-    <img class="banner__sign-in--close banner__register--close" src="images/icon/close-button.svg">
+    <img class="banner__sign-in--close banner__register--close" th:src="@{/images/icon/close-button.svg}">
     <div class="sign-in__container">
         <h2 class="sign-in__header">Rejestracja</h2>
         <span th:if="${successfullyRegistered}" class="sign-in__form-success">Zarejestrowano pomyślnie</span>
-        <form class="sign-in__form" method="post" th:object="${user}">
+        <form class="sign-in__form" method="post" th:object="${user}" th:action="@{/}">
             <div class="sign-in__form-item">
                 <div class="sign-in__field">
                     <input name="first_name" th:field="*{firstName}" class="sign-in__form-input" required>

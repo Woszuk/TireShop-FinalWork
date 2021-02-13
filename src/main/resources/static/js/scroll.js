@@ -7,9 +7,6 @@ document.addEventListener("DOMContentLoaded", function(){
     let addToBasket = document.querySelectorAll("input.menu-shop__content-basket");
     let changeData = document.querySelector(".my-account__form-button");
 
-    console.log(scrollSomething);
-    console.log(changeData);
-
     window.scrollTo(0, scrollSomething[scrollSomething.length-1].value);
     if(totalPrice != null){
         if(totalPrice.value === 'yes' && summary != null){

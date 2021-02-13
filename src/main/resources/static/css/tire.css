@@ -118,9 +118,6 @@
 }
 
 .menu-shop__content-basket:disabled{
-    cursor: initial;
-}
-
-.menu-shop__content-basket:hover:disabled {
-    background: rgb(49, 175, 27);
+    cursor: not-allowed;
+    background: #666
 }
