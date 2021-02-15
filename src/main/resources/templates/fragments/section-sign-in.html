@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="pl" xmlns:th="http://thymeleaf.org" >
-<section class="banner__sign-in" th:classappend="${loginError} ? 'banner__sign-in--display': ''">
+<section class="banner__sign-in" th:classappend="${login} ? 'banner__sign-in--display': ''">
     <img class="banner__sign-in--close" th:src="@{/images/icon/close-button.svg}">
     <div class="sign-in__container">
         <h2 class="sign-in__header">Zaloguj się</h2>

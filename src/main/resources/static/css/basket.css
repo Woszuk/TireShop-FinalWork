@@ -226,6 +226,7 @@
     width: 30px;
     height: 30px;
     cursor: pointer;
+    border-radius: initial;
     border: none;
     outline: none;
     background-color: initial;
@@ -245,6 +246,16 @@
 .basket__count:hover {
     background-color: #eee;
 }
+
+.basket__count:active {
+    background-color: #ccc;
+}
+
+.basket__count:disabled {
+    cursor: not-allowed;
+    background-color: #888;
+}
+
 
 .plus {
     background-image: url("/images/icon/plus.svg");

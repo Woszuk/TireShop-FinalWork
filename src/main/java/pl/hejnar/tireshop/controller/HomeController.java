@@ -53,8 +53,16 @@ public class HomeController {
         return redirectToPageService.goToPage(ses);
     }
 
-    @GetMapping("/loginError")
+    @GetMapping("/login")
     public String login(RedirectAttributes redirectAttributes, HttpSession ses){
+        redirectAttributes.addFlashAttribute("login", true);
+        return redirectToPageService.goToPage(ses);
+    }
+
+
+    @GetMapping("/loginError")
+    public String loginError(RedirectAttributes redirectAttributes, HttpSession ses){
+        redirectAttributes.addFlashAttribute("login", true);
         redirectAttributes.addFlashAttribute("loginError", true);
         return redirectToPageService.goToPage(ses);
     }

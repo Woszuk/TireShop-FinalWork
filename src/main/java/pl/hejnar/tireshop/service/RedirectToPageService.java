@@ -14,7 +14,9 @@ public class RedirectToPageService {
                 return "redirect:/shop/tire";
             }else if(page.equals("wheelRim")){
                 return "redirect:/shop/wheel-rim";
-            }else {
+            }else if(page.equals("basket")){
+                return "redirect:/basket";
+            } else {
                 return "redirect:/";
             }
         }else {
