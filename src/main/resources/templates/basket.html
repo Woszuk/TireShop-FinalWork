@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wulkanizacja Edek</title>
+
+    <link rel="icon" type="image/x-icon" href="/images/icon/tire.svg">
+    <link rel="stylesheet" href="/css/global.css">
+    <link rel="stylesheet" href="/css/main-navigation.css">
+    <link rel="stylesheet" href="/css/sign-in.css">
+    <link rel="stylesheet" href="/css/basket.css">
+
+
+</head>
+
+<body>
+<section class="banner__sign-in" th:replace="fragments/section-sign-in::section">
+</section>
+
+<section class="banner__sign-in banner__register" th:replace="fragments/section-registration::section">
+</section>
+
+<div class="scroll">
+    <nav class="main-navigation" th:replace="fragments/nav::nav">
+    </nav>
+    <section class="basket__section">
+        <h2 class="basket__header">Koszyk</h2>
+        <div class="basket__container">
+            <h2 th:if="${session.basket == null}" class="basket__container-header">Twój koszyk jest pusty</h2>
+            <ul th:if="${session.basket != null}"  class="basket__container-list">
+                <li class="basket__container-item" th:each="basket : ${basketItems}">
+                    <div class="basket__info">
+                        <div class="basket__info-left">
+                            <div class="basket__img-size">
+                                <div class="basket__img-position">
+                                    <img th:if="${basket.product.type == 'tire'}" th:src="@{'/images/tire/' + ${basket.product.img}}" alt="tire"
+                                         class="basket__img">
+                                    <img th:if="${basket.product.type == 'wheel-rim'}" th:src="@{'/images/wheel-rims/' + ${basket.product.img}}" alt="wheel-rim"
+                                         class="basket__img wheel-rim">
+                                </div>
+                            </div>
+                            <div class="basket__info-parameters">
+                                <span class="basket__info-parameter" th:text="${basket.product.brand + ' ' + basket.product.model + ' ' + basket.product.size}"></span>
+                            </div>
+                        </div>
+                        <div class="basket__info-right">
+                            <div class="basket__quantity">
+                                <a th:href="@{'/basket/item/quantity?type=minus&id=' + ${basket.id}}" class="basket__quantity-link">
+                                    <button th:if="${basket.quantity > 1}" class="basket__count minus"></button>
+                                    <button th:if="${basket.quantity <=1}" class="basket__count minus" disabled></button>
+                                </a>
+                                <div class="basket__input">
+                                    <input type="number" min="1" th:value="${basket.quantity}" class="basket__input-quantity">
+                                </div>
+                                <a th:href="@{'/basket/item/quantity?type=plus&id=' + ${basket.id}}" class="basket__quantity-link">
+                                    <button th:if="${basket.quantity < basket.product.quantity}" class="basket__count plus"></button>
+                                    <button th:if="${basket.quantity >= basket.product.quantity}" class="basket__count plus" disabled></button>
+                                </a>
+                            </div>
+                            <div class="basket__price">
+                                <span class="basket__price-span" th:text="${(basket.product.price * basket.quantity) + ' zł'}"></span>
+                                <spnn th:if="${basket.quantity >= 2}" th:text="'za sztukę ' + ${basket.product.price} + ' zł'" class="basket__price-span--piece">za sztukę 205 zł</spnn>
+                            </div>
+                            <div class="basket__delete">
+                                <a th:href="@{'/basket/item/remove?id=' + ${basket.id}}" class="basket__delete-link">
+                                    <button class="basket__delete-button"></button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <div class="summary__container" th:if="${session.basket != null}">
+                <div class="summary">
+                    <h2 class="summary__header">Podusmowanie zakupów:</h2>
+                    <div class="summary__position-arrow">
+                        <div class="summary__arrow"></div>
+                        <div class="summary__arrow-text">Płacę</div>
+                    </div>
+                    <div class="summary__info">
+                        <p class="summary__price-paragraph">Do zapłaty: <span class="summary__price-span" th:text="${totalPrice} + ' zł'"></span>
+                        </p>
+                    </div>
+                    <a th:href="@{/transaction}" class="summary__link">
+                        Dostawa i płatność
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="basket__background"></div>
+</div>
+
+<input type="hidden" id="scrollTo" name="scrollTo" th:value="${scrollTo}">
+<!--<input type="hidden" id="totalPrice" value="${summary}">-->
+
+<script src="/js/scroll.js"></script>
+<script src="/js/main-navigation.js"></script>
+<script src="/js/account-navigation.js"></script>
+<script src="/js/sign-in.js"></script>
+<script src="/js/summary.js"></script>
+</body>
+
+</html>
