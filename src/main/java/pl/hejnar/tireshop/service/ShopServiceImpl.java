@@ -2,10 +2,13 @@ package pl.hejnar.tireshop.service;
 
 import org.springframework.stereotype.Service;
 import pl.hejnar.tireshop.entity.BasketItem;
+import pl.hejnar.tireshop.entity.User;
 import pl.hejnar.tireshop.repository.BasketItemRepository;
 import pl.hejnar.tireshop.repository.ProductRepository;
+import pl.hejnar.tireshop.repository.UserRepository;
 
 import javax.servlet.http.HttpSession;
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,14 +17,16 @@ public class ShopServiceImpl implements ShopService {
 
     private final ProductRepository productRepository;
     private final BasketItemRepository basketItemRepository;
+    private final UserRepository userRepository;
 
-    public ShopServiceImpl(ProductRepository productRepository, BasketItemRepository basketItemRepository) {
+    public ShopServiceImpl(ProductRepository productRepository, BasketItemRepository basketItemRepository, UserRepository userRepository) {
         this.productRepository = productRepository;
         this.basketItemRepository = basketItemRepository;
+        this.userRepository = userRepository;
     }
 
     @Override
-    public void addToBasket(int quantityToBuy, Long id, HttpSession ses) {
+    public void addToBasket(int quantityToBuy, Long id, HttpSession ses, Principal principal) {
         List<BasketItem> basketItemList;
         boolean check = false;
 
@@ -33,8 +38,8 @@ public class ShopServiceImpl implements ShopService {
 
         for(BasketItem basketItem: basketItemList){
             if(basketItem.getProduct().getId().equals(id)) {
-                basketItem = basketItemRepository.findBasketItemById(basketItem.getId());
-                basketItem.setQuantity(Math.min(basketItem.getQuantity() + quantityToBuy, basketItem.getProduct().getQuantity()));
+                BasketItem basketItemEquals = basketItemRepository.findBasketItemById(basketItem.getId());
+                basketItem.setQuantity(Math.min(basketItem.getQuantity() + quantityToBuy, basketItemEquals.getProduct().getQuantity()));
                 basketItemRepository.updateBasketItem(basketItem.getQuantity(), basketItem.getId());
                 check = true;
                 break;
@@ -44,6 +49,12 @@ public class ShopServiceImpl implements ShopService {
         if(!check){
             BasketItem basketItem = new BasketItem().setQuantity(quantityToBuy).setProduct(productRepository.getOne(id));
             basketItemList.add(basketItem);
+            try{
+                User user = userRepository.findByUsername(principal.getName());
+                basketItem.setUser(user);
+            }catch (NullPointerException e){
+                e.getMessage();
+            }
             basketItemRepository.save(basketItem);
         }
 

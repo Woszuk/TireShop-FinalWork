@@ -6,23 +6,24 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import pl.hejnar.tireshop.entity.User;
 import pl.hejnar.tireshop.repository.ProductRepository;
-import pl.hejnar.tireshop.service.RedirectToPageService;
+import pl.hejnar.tireshop.service.FeaturesService;
 import pl.hejnar.tireshop.service.ShopServiceImpl;
 
 import javax.servlet.http.HttpSession;
+import java.security.Principal;
 
 @Controller
 @RequestMapping("/shop")
 public class ShopController {
 
     private final ProductRepository productRepository;
-    private final RedirectToPageService redirectToPageService;
     private final ShopServiceImpl shopService;
+    private final FeaturesService featuresService;
 
-    public ShopController(ProductRepository productRepository, RedirectToPageService redirectToPageService, ShopServiceImpl shopService) {
+    public ShopController(ProductRepository productRepository, ShopServiceImpl shopService, FeaturesService featuresService) {
         this.productRepository = productRepository;
-        this.redirectToPageService = redirectToPageService;
         this.shopService = shopService;
+        this.featuresService = featuresService;
     }
 
     @ModelAttribute("user")
@@ -46,13 +47,13 @@ public class ShopController {
 
     @GetMapping("/addToBasket")
     public String addToBasket(HttpSession ses){
-        return redirectToPageService.goToPage(ses);
+        return featuresService.goToPage(ses);
     }
 
     @PostMapping("/addToBasket")
-    public String addToBasket(@RequestParam int quantityToBuy, @RequestParam Long productId, @RequestParam Double scrollTo, HttpSession ses, RedirectAttributes redAttr){
+    public String addToBasket(@RequestParam int quantityToBuy, @RequestParam Long productId, @RequestParam Double scrollTo, HttpSession ses, RedirectAttributes redAttr, Principal principal){
         redAttr.addFlashAttribute("scrollTo", scrollTo);
-        shopService.addToBasket(quantityToBuy, productId, ses);
-        return redirectToPageService.goToPage(ses);
+        shopService.addToBasket(quantityToBuy, productId, ses, principal);
+        return featuresService.goToPage(ses);
     }
 }

@@ -10,7 +10,7 @@ import java.util.Set;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
     @Size(min = 2)
     private String firstName;
     @Size(min = 2)
@@ -31,11 +31,11 @@ public class User {
     public User() {
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public User setId(int id) {
+    public User setId(Long id) {
         this.id = id;
         return this;
     }

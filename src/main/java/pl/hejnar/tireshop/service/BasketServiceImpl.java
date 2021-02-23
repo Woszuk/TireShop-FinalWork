@@ -3,10 +3,13 @@ package pl.hejnar.tireshop.service;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import pl.hejnar.tireshop.entity.BasketItem;
+import pl.hejnar.tireshop.entity.User;
 import pl.hejnar.tireshop.repository.BasketItemRepository;
+import pl.hejnar.tireshop.repository.UserRepository;
 
 import javax.servlet.http.HttpSession;
 import java.math.BigDecimal;
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,9 +17,11 @@ import java.util.List;
 public class BasketServiceImpl implements BasketService {
 
     private final BasketItemRepository basketItemRepository;
+    private final UserRepository userRepository;
 
-    public BasketServiceImpl(BasketItemRepository basketItemRepository) {
+    public BasketServiceImpl(BasketItemRepository basketItemRepository, UserRepository userRepository) {
         this.basketItemRepository = basketItemRepository;
+        this.userRepository = userRepository;
     }
 
 
@@ -35,6 +40,7 @@ public class BasketServiceImpl implements BasketService {
 
             model.addAttribute("totalPrice", totalPrice);
             model.addAttribute("basketItems", basketItems);
+            ses.setAttribute("basket", basketItems);
         }
     }
 
