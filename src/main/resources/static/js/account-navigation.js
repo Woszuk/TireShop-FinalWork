@@ -1,6 +1,6 @@
 (() => {
-    let account = document.querySelectorAll(".main-navigation__account-item--link");
-    let accountMobile = document.querySelectorAll(".main-navigation__mobile-account .main-navigation__account-item--link");
+    let account = document.querySelectorAll(".main-navigation__account-item--link.sign-in");
+    let accountMobile = document.querySelectorAll(".main-navigation__mobile-account .main-navigation__account-item--link.sign-in");
     let signIn = document.querySelector(".banner__sign-in");
     let closeSignIn = document.querySelector(".banner__sign-in--close");
     let closeRegister = document.querySelector(".banner__register--close");
@@ -34,15 +34,24 @@
         register.classList.toggle("banner__sign-in--display")
     }
 
-    if(accountMobile!= null){
+    if(accountMobile.length > 0){
         accountMobile[0].addEventListener("click", toggleSignIn);
         accountMobile[1].addEventListener("click", toggleRegister)
     }
 
-    account[0].addEventListener("click", toggleSignIn);
-    account[1].addEventListener("click", toggleRegister)
-    closeSignIn.addEventListener("click", toggleSignIn);
-    closeRegister.addEventListener("click", toggleRegister);
-    newAccount.addEventListener("click", toggleSignReg);
-    haveAccount.addEventListener("click", toggleSignReg);
+    if(account.length > 0){
+        account[0].addEventListener("click", toggleSignIn);
+        account[1].addEventListener("click", toggleRegister);
+    }
+
+    if(closeSignIn != null){
+        closeSignIn.addEventListener("click", toggleSignIn);
+
+    }
+
+    if(closeRegister != null){
+        closeRegister.addEventListener("click", toggleRegister);
+        haveAccount.addEventListener("click", toggleSignReg);
+        newAccount.addEventListener("click", toggleSignReg);
+    }
 })();

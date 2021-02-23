@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="pl" xmlns:th="http://thymeleaf.org" >
-<section class="banner__sign-in" th:classappend="${login} ? 'banner__sign-in--display': ''">
+<html lang="pl" xmlns:th="http://thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml" >
+<section sec:authorize="isAnonymous()" class="banner__sign-in" th:classappend="${login} ? 'banner__sign-in--display': ''">
     <img class="banner__sign-in--close" th:src="@{/images/icon/close-button.svg}">
     <div class="sign-in__container">
         <h2 class="sign-in__header">Zaloguj się</h2>
