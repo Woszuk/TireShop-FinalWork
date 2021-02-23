@@ -1,7 +1,5 @@
 package pl.hejnar.tireshop.controller;
 
-import org.springframework.boot.context.event.ApplicationReadyEvent;
-import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,7 +13,6 @@ import pl.hejnar.tireshop.service.UserServiceImpl;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-import java.util.Random;
 
 @Controller
 public class HomeController {

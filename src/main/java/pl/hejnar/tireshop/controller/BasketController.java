@@ -11,17 +11,14 @@ import pl.hejnar.tireshop.service.BasketServiceImpl;
 import pl.hejnar.tireshop.service.FeaturesService;
 
 import javax.servlet.http.HttpSession;
-import java.security.Principal;
 
 @Controller
 public class BasketController {
 
     private final BasketServiceImpl basketService;
-    private final FeaturesService featuresService;
 
-    public BasketController(BasketServiceImpl basketService, FeaturesService featuresService) {
+    public BasketController(BasketServiceImpl basketService) {
         this.basketService = basketService;
-        this.featuresService = featuresService;
     }
 
     @ModelAttribute("user")
