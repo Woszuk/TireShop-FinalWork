@@ -27,6 +27,8 @@ public class User {
     private String phoneNumber;
     @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     private Set<Role> roles;
+    @OneToOne
+    private Address address;
 
     public User() {
     }
@@ -100,6 +102,15 @@ public class User {
 
     public User setRoles(Set<Role> roles) {
         this.roles = roles;
+        return this;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public User setAddress(Address address) {
+        this.address = address;
         return this;
     }
 }

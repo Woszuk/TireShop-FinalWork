@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://thymeleaf.org" >
+<div class="my-account__left">
+    <ul class="my-account__menu-list">
+        <li class="my-account__menu-item">
+            <a th:href="@{/account/data}" class="my-account__item--link">Moje dane</a>
+        </li>
+        <li class="my-account__menu-item">
+            <a th:href="@{/account/orders}" class="my-account__item--link">Moje zamówienia</a>
+        </li>
+        <li class="my-account__menu-item">
+            <a th:href="@{/account/change/data}" class="my-account__item--link">Zmiana danych</a>
+        </li>
+        <li class="my-account__menu-item">
+            <a th:href="@{/account/change/address}" class="my-account__item--link">Zmiana adresu</a>
+        </li>
+        <li class="my-account__menu-item">
+            <a th:href="@{/account/change/password}" class="my-account__item--link">Zmiana hasła</a>
+        </li>
+    </ul>
+</div>
+</html>
+
