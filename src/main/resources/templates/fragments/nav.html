@@ -3,7 +3,7 @@
 <nav class="main-navigation">
     <div class="main-navigation__inner">
         <div class="main-navigation__logo">
-            <a href="#" class="main-navigation__logo-link">
+            <a th:href="@{/}" class="main-navigation__logo-link">
                 <img th:src="@{/images/icon/logo.svg}" alt="logo" class="main-navigation__logo-image">
                 Edek
             </a>
@@ -70,19 +70,19 @@
                     </ul>
                     <ul sec:authorize="isAuthenticated()" class="main-navigation__account-list">
                         <li class="main-navigation__account-item">
-                            <a href="/account/data" class="main-navigation__account-item--link">Moje dane</a>
+                            <a th:href="@{/account/details}" class="main-navigation__account-item--link">Moje dane</a>
                         </li>
                         <li class="main-navigation__account-item">
-                            <a href="/account/orders" class="main-navigation__account-item--link">Moje zamówienia</a>
+                            <a th:href="@{/account/orders}" class="main-navigation__account-item--link">Moje zamówienia</a>
                         </li>
                         <li class="main-navigation__account-item">
-                            <a href="/account/change/data" class="main-navigation__account-item--link">Zmiana danych</a>
+                            <a th:href="@{/account/change/details}" class="main-navigation__account-item--link">Zmiana danych</a>
                         </li>
                         <li class="main-navigation__account-item">
-                            <a href="/account/change/address" class="main-navigation__account-item--link">Zmiana adresu</a>
+                            <a th:href="@{/account/change/address}" class="main-navigation__account-item--link">Zmiana adresu</a>
                         </li>
                         <li class="main-navigation__account-item">
-                            <a href="/account/change/password" class="main-navigation__account-item--link">Zmiana hasła</a>
+                            <a th:href="@{/account/change/password}" class="main-navigation__account-item--link">Zmiana hasła</a>
                         </li>
                         <li class="main-navigation__account-item">
                             <a th:href="@{/logout}" class="main-navigation__account-item--link">Wyloguj się</a>
@@ -111,19 +111,19 @@
                 </ul>
                 <ul sec:authorize="isAuthenticated()" class="main-navigation__account-list">
                     <li class="main-navigation__account-item">
-                        <a href="/account/data" class="main-navigation__account-item--link">Moje dane</a>
+                        <a th:href="@{/account/details}" class="main-navigation__account-item--link">Moje dane</a>
                     </li>
                     <li class="main-navigation__account-item">
-                        <a href="/account/orders" class="main-navigation__account-item--link">Moje zamówienia</a>
+                        <a th:href="@{/account/orders}" class="main-navigation__account-item--link">Moje zamówienia</a>
                     </li>
                     <li class="main-navigation__account-item">
-                        <a href="/account/change/data" class="main-navigation__account-item--link">Zmiana danych</a>
+                        <a th:href="@{/account/change/details}" class="main-navigation__account-item--link">Zmiana danych</a>
                     </li>
                     <li class="main-navigation__account-item">
-                        <a href="/account/change/address" class="main-navigation__account-item--link">Zmiana adresu</a>
+                        <a th:href="@{/account/change/address}" class="main-navigation__account-item--link">Zmiana adresu</a>
                     </li>
                     <li class="main-navigation__account-item">
-                        <a href="/account/change/password" class="main-navigation__account-item--link">Zmiana hasła</a>
+                        <a th:href="@{/account/change/password}" class="main-navigation__account-item--link">Zmiana hasła</a>
                     </li>
                     <li class="main-navigation__account-item">
                         <a th:href="@{/logout}" class="main-navigation__account-item--link">Wyloguj się</a>

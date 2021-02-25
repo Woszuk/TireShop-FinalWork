@@ -24,6 +24,7 @@ public class User {
     private String username;
     @Pattern(regexp = "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{8,}", message = "Hasło musi zawierać małe i duże litery oraz cyfry")
     private String password;
+    @Pattern(regexp = "(\\+48\\s?)?([0-9]{3}\\s?){2}[0-9]{3}", message = "Podaj poprawny numer telefonu (np.: +48 123 456 789, 123 456 789)")
     private String phoneNumber;
     @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     private Set<Role> roles;

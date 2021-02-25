@@ -8,7 +8,7 @@
     let backMenu = document.querySelector(".main-navigation__menu-mobile");
 
     const toggleClass = () => {
-        if(window.outerWidth <= 991){
+        if(window.innerWidth <= 991){
             menu.classList.toggle("main-navigation__menu--open");
             div = document.querySelector(".main-navigation__menu--open");
         }
@@ -23,7 +23,7 @@
     }
 
     const accountToggle = () => {
-        if(window.outerWidth <= 991){
+        if(window.innerWidth <= 991){
             menu.classList.toggle("main-navigation__menu--open");
             account.classList.toggle("main-navigation__menu--open");
             div = document.querySelector(".main-navigation__menu--open");

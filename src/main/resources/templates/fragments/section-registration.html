@@ -10,29 +10,29 @@
                 <div class="sign-in__field">
                     <input name="first_name" th:field="*{firstName}" class="sign-in__form-input" required>
                     <label class="sign-in__form-label">Imię</label>
-                    <span class="sign-in__form-error" th:if="${#fields.hasErrors('firstName')}" th:error="*{firstName}">Wymagane minimum 2 znaki</span>
+                    <span class="sign-in__form-error" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">Wymagane minimum 2 znaki</span>
                 </div>
                 <div class="sign-in__field">
                     <input name="lastName" th:field="*{lastName}" class="sign-in__form-input" required>
                     <label class="sign-in__form-label">Nazwisko</label>
-                    <span class="sign-in__form-error" th:if="${#fields.hasErrors('lastName')}" th:error="*{lastName}">Wymagane minimum 2 znaki</span>
+                    <span class="sign-in__form-error" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Wymagane minimum 2 znaki</span>
                 </div>
                 <div class="sign-in__field">
                     <input name="email" th:field="*{email}" class="sign-in__form-input" required>
                     <label class="sign-in__form-label">Email</label>
-                    <span class="sign-in__form-error" th:if="${#fields.hasErrors('email')}" th:error="*{email}">Niepoprawny email</span>
+                    <span class="sign-in__form-error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Niepoprawny email</span>
                     <span class="sign-in__form-error" th:if="${errorEmail != null}">Podany email już istnieje</span>
                 </div>
                 <div class="sign-in__field">
                     <input name="userName" th:field="*{username}" class="sign-in__form-input" required>
                     <label class="sign-in__form-label">Nazwa użytkownika</label>
-                    <span class="sign-in__form-error" th:if="${#fields.hasErrors('username')}" th:error="*{username}">Tylko lietry i cyfry oraz minimum 3 znaki</span>
+                    <span class="sign-in__form-error" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Tylko lietry i cyfry oraz minimum 3 znaki</span>
                     <span class="sign-in__form-error" th:if="${errorUsername != null}">Podana nazwa użykownika już istnieje</span>
                 </div>
                 <div class="sign-in__field">
                     <input type="password" th:field="*{password}" name="password" class="sign-in__form-input" required>
                     <label class="sign-in__form-label">Hasło</label>
-                    <span class="sign-in__form-error" th:if="${#fields.hasErrors('password')}" th:error="*{password}">Hasło musi zawierać małe i duże litery oraz cyfry</span>
+                    <span class="sign-in__form-error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Hasło musi zawierać małe i duże litery oraz cyfry</span>
                 </div>
                 <div class="sign-in__field">
                     <input type="password"  name="password2" class="sign-in__form-input" required>

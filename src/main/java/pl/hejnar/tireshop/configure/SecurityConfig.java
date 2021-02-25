@@ -28,7 +28,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.headers().disable();
         http.authorizeRequests()
                 .antMatchers("/account/**", "/transaction").hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")
-                .and().formLogin().loginPage("/login").defaultSuccessUrl("/account/data").failureUrl("/loginError")
+                .and().formLogin().loginPage("/login").defaultSuccessUrl("/account/details").failureUrl("/loginError")
                 .and().logout().logoutSuccessUrl("/");
     }
 }

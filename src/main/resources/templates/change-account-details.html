@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="/css/sign-in.css">
     <link rel="stylesheet" href="/css/account-menu.css">
     <link rel="stylesheet" href="/css/account-data.css">
-
+    <link rel="stylesheet" href="/css/change-data.css">
 
 </head>
 
@@ -39,28 +39,51 @@
                     <div class="my-account__info">
                         <div class="my-account__info-type">
                             <h2 class="my-account__info-header">Dane konta</h2>
-                            <a th:href="@{/account/change/details}" class="my-account__info-edit">Edytuj</a>
                         </div>
                         <div class="my-account__info-data">
-                            <table class="my-account__info-table">
-                                <tr class="my-account__table-row test">
-                                    <td>Imię i nazwisko:</td>
-                                    <td class="my-account__table-info" th:text="${loggedUser.firstName + ' ' + loggedUser.lastName}"></td>
-                                </tr>
-                                <tr class="my-account__table-row test">
-                                    <td>Adres e-mail:</td>
-                                    <td class="my-account__table-info" th:text="${loggedUser.email}"></td>
-                                </tr>
-                                <tr class="my-account__table-row test">
-                                    <td>Nazwa użytkownika:</td>
-                                    <td class="my-account__table-info" th:text="${loggedUser.username}"></td>
-                                </tr>
-                                <tr class="my-account__table-row test">
-                                    <td>Numer telefonu:</td>
-                                    <td class="my-account__table-info" th:if="${loggedUser.phoneNumber != null}" th:text="${loggedUser.phoneNumber}"></td>
-                                    <td class="my-account__table-info" th:if="${loggedUser.phoneNumber == null}" th:text="Brak"></td>
-                                </tr>
-                            </table>
+                            <form th:action="@{/account/change/details}" method="post" th:object="${loggedUser}">
+                                <table class="my-account__info-table">
+                                    <tr class="my-account__table-row">
+                                        <td>Imię:</td>
+                                        <td class="my-account__table-info">
+                                            <input class="my-account__form-input" th:field="*{firstName}">
+                                            <div class="my-account__form-error" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></div>
+                                        </td>
+                                    </tr>
+                                    <tr class="my-account__table-row">
+                                        <td>Nazwisko:</td>
+                                        <td class="my-account__table-info">
+                                            <input class="my-account__form-input" th:field="*{lastName}">
+                                            <div class="my-account__form-error" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></div>
+                                        </td>
+                                    </tr>
+                                    <tr class="my-account__table-row">
+                                        <td>Adres e-mail:</td>
+                                        <td class="my-account__table-info">
+                                            <input name="email" th:field="*{email}" class="my-account__form-input" required>
+                                            <div class="my-account__form-error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Niepoprawny email</div>
+                                            <div class="my-account__form-error" th:if="${errorEmail != null}">Podany email już istnieje</div>
+                                        </td>
+                                    </tr>
+                                    <tr class="my-account__table-row">
+                                        <td>Nazwa użytkownika:</td>
+                                        <td class="my-account__table-info">
+                                            <input name="userName" th:field="*{username}" class="my-account__form-input" required>
+                                            <div class="my-account__form-error" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Tylko lietry i cyfry oraz minimum 3 znaki</div>
+                                            <div class="my-account__form-error" th:if="${errorUsername != null}">Podana nazwa użykownika już istnieje</div>
+                                        </td>
+                                    </tr>
+                                    <tr class="my-account__table-row">
+                                        <td>Numer telefonu:</td>
+                                        <td class="my-account__table-info">
+                                            <input name="userName" th:field="*{phoneNumber}" class="my-account__form-input" required>
+                                            <div class="my-account__form-error" th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}">Podaj poprawny numer telefonu (np.: +48 123 456 789, 123 456 789)</div>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <input type="hidden" name="scrollTo" value="${scrollTo}">
+                                <button type="submit" class="my-account__form-button">Zapisz</button>
+                            </form>
                         </div>
                     </div>
                     <div class="my-account__info">
