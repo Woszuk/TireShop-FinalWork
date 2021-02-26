@@ -1,5 +1,7 @@
 package pl.hejnar.tireshop.controller;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -9,7 +11,6 @@ import pl.hejnar.tireshop.entity.User;
 import pl.hejnar.tireshop.repository.UserRepository;
 import pl.hejnar.tireshop.service.AccountService;
 import pl.hejnar.tireshop.service.FeaturesService;
-import pl.hejnar.tireshop.service.UserService;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -20,16 +21,16 @@ import java.security.Principal;
 public class AccountController {
 
     private final UserRepository userRepository;
-    private final UserService userService;
     private final AccountService accountService;
     private final FeaturesService featuresService;
+    private final PasswordEncoder encoder;
 
 
-    public AccountController(UserRepository userRepository, UserService userService, AccountService accountService, FeaturesService featuresService) {
+    public AccountController(UserRepository userRepository, AccountService accountService, FeaturesService featuresService, PasswordEncoder encoder) {
         this.userRepository = userRepository;
-        this.userService = userService;
         this.accountService = accountService;
         this.featuresService = featuresService;
+        this.encoder = encoder;
     }
 
     @ModelAttribute("loggedUser")
@@ -98,5 +99,26 @@ public class AccountController {
         accountService.saveAddress(address, principal);
 
         return "redirect:/account/details";
+    }
+
+    @GetMapping("/change/password")
+    public String changePassword(HttpSession ses, Principal principal){
+        if(ses.getAttribute("userLoggedIn") == null){
+            featuresService.saveProductToUser(ses,principal);
+        }
+        return "change-account-password";
+    }
+
+    @PostMapping("/change/password")
+    public String changePassword(@RequestParam("oldPassword") String oldPassword, @RequestParam("newPassword") String newPassword, @RequestParam("repeatPassword") String repeatPassword, Principal principal, Model model){
+        boolean check = accountService.changePassword(oldPassword, newPassword, repeatPassword, encoder, principal, model);
+        if(check){
+            if(principal.getName() != null){
+                User user = userRepository.findByUsername(principal.getName()).setPassword(encoder.encode(newPassword));
+                userRepository.save(user);
+                model.addAttribute("success", true);
+            }
+        }
+        return "change-account-password";
     }
 }

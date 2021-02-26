@@ -4,6 +4,8 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import pl.hejnar.tireshop.entity.Address;
@@ -57,5 +59,27 @@ public class AccountServiceImpl implements AccountService {
         List<GrantedAuthority> updatedAuthorities = new ArrayList<>(auth.getAuthorities());
         Authentication newAuth = new UsernamePasswordAuthenticationToken(changeUser.getUsername(), auth.getCredentials(), updatedAuthorities);
         SecurityContextHolder.getContext().setAuthentication(newAuth);
+    }
+
+    @Override
+    public boolean changePassword(String oldPassword, String newPassword, String repeatPassword, PasswordEncoder encoder, Principal principal, Model model) {
+        if(principal.getName()!= null){
+            User user = userRepository.findByUsername(principal.getName());
+            if(newPassword.matches("(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{8,}")){
+                if(!(newPassword.equals(repeatPassword))){
+                    model.addAttribute("different", true);
+                    return false;
+                }
+            }else {
+                model.addAttribute("validPassword", true);
+                return false;
+            }
+
+            if(!(encoder.matches(oldPassword, user.getPassword()))){
+                model.addAttribute("incorrectPassword", true);
+                return false;
+            }
+        }
+        return true;
     }
 }
