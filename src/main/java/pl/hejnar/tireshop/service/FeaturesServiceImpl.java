@@ -70,7 +70,7 @@ public class FeaturesServiceImpl implements FeaturesService {
                 }
             }
             ses.setAttribute("basket", basketItemRepository.findBasketItemsByUserId(user));
-        }else {
+        }else if (basketItemsWithUser.size() >=1){
             ses.setAttribute("basket", basketItemsWithUser);
         }
 

@@ -1,9 +1,6 @@
 package pl.hejnar.tireshop.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -21,11 +18,14 @@ public class Address {
     private String numberOfBuilding;
     @Pattern(regexp = "^[a-zA-Z0-9]+|^\\s?", message = "Dozwolone tylko cyfry i litery")
     private String apartmentNumber;
-    private String postalCode1;
-    private String postalCode2;
+    @Pattern(regexp = "\\d{2}-\\d{3}")
+    private String postalCode;
     @Size(min = 2, message = "Minimum 2 litery")
     @Pattern(regexp = "[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ]+", message = "Dozwolone tylko litery")
     private String city;
+    @OneToOne(mappedBy = "address")
+    private User user;
+
 
     public long getId() {
         return id;
@@ -63,21 +63,12 @@ public class Address {
         return this;
     }
 
-    public String getPostalCode1() {
-        return postalCode1;
+    public String getPostalCode() {
+        return postalCode;
     }
 
-    public Address setPostalCode1(String postalCode1) {
-        this.postalCode1 = postalCode1;
-        return this;
-    }
-
-    public String getPostalCode2() {
-        return postalCode2;
-    }
-
-    public Address setPostalCode2(String postalCode2) {
-        this.postalCode2 = postalCode2;
+    public Address setPostalCode(String postalCode) {
+        this.postalCode = postalCode;
         return this;
     }
 
@@ -87,6 +78,15 @@ public class Address {
 
     public Address setCity(String city) {
         this.city = city;
+        return this;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public Address setUser(User user) {
+        this.user = user;
         return this;
     }
 }

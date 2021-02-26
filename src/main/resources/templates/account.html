@@ -87,7 +87,7 @@
                                 </tr>
                                 <tr class="my-account__table-row">
                                     <td>Kod pocztowy:</td>
-                                    <td class="my-account__table-info" th:if="${loggedUser.address != null}" th:text="${loggedUser.address.postalCode1} + '-' + ${loggedUser.address.postalCode2}"></td>
+                                    <td class="my-account__table-info" th:if="${loggedUser.address != null}" th:text="${loggedUser.address.postalCode}"></td>
                                     <td class="my-account__table-info" th:if="${loggedUser.address == null}" th:text="Brak"></td>
                                 </tr>
                                 <tr class="my-account__table-row">
