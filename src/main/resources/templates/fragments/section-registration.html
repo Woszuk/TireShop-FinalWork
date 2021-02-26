@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml" >
+<section sec:authorize="isAnonymous()" class="banner__sign-in banner__register" th:classappend="${someChange} ? 'banner__sign-in--display': ''">
+    <img class="banner__sign-in--close banner__register--close" th:src="@{/images/icon/close-button.svg}">
+    <div class="sign-in__container">
+        <h2 class="sign-in__header">Rejestracja</h2>
+        <span th:if="${successfullyRegistered}" class="sign-in__form-success">Zarejestrowano pomyślnie</span>
+        <form class="sign-in__form" method="post" th:object="${user}" th:action="@{/}">
+            <div class="sign-in__form-item">
+                <div class="sign-in__field">
+                    <input name="first_name" th:field="*{firstName}" class="sign-in__form-input" required>
+                    <label class="sign-in__form-label">Imię</label>
+                    <span class="sign-in__form-error" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">Wymagane minimum 2 znaki</span>
+                </div>
+                <div class="sign-in__field">
+                    <input name="lastName" th:field="*{lastName}" class="sign-in__form-input" required>
+                    <label class="sign-in__form-label">Nazwisko</label>
+                    <span class="sign-in__form-error" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Wymagane minimum 2 znaki</span>
+                </div>
+                <div class="sign-in__field">
+                    <input name="email" th:field="*{email}" class="sign-in__form-input" required>
+                    <label class="sign-in__form-label">Email</label>
+                    <span class="sign-in__form-error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Niepoprawny email</span>
+                    <span class="sign-in__form-error" th:if="${errorEmail != null}">Podany email już istnieje</span>
+                </div>
+                <div class="sign-in__field">
+                    <input name="userName" th:field="*{username}" class="sign-in__form-input" required>
+                    <label class="sign-in__form-label">Nazwa użytkownika</label>
+                    <span class="sign-in__form-error" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Tylko lietry i cyfry oraz minimum 3 znaki</span>
+                    <span class="sign-in__form-error" th:if="${errorUsername != null}">Podana nazwa użykownika już istnieje</span>
+                </div>
+                <div class="sign-in__field">
+                    <input type="password" th:field="*{password}" name="password" class="sign-in__form-input" required>
+                    <label class="sign-in__form-label">Hasło</label>
+                    <span class="sign-in__form-error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Hasło musi zawierać małe i duże litery oraz cyfry</span>
+                </div>
+                <div class="sign-in__field">
+                    <input type="password"  name="password2" class="sign-in__form-input" required>
+                    <label class="sign-in__form-label">Powtórz hasło</label>
+                </div>
+                <button class="sign-in__form-button">Zarejestruj</button>
+            </div>
+        </form>
+    </div>
+    <div class="sign-in__check register">
+        <div class="sign-in__check-field register">
+            <p class="sign-in__check-paragraph-register">Masz już konto? <span
+                    class="sign-in__check-paragraph">Zaloguj się</span>
+            </p>
+        </div>
+    </div>
+</section>
+</html>
+

@@ -1,0 +1,39 @@
+.wheel-rim--info {
+    height: 160px;
+    margin: 0;
+}
+
+@media(max-width: 358px) {
+    .wheel-rim--info {
+        height: 120px;
+    }
+}
+
+.wheel-rim--position {
+    position: initial;
+    width: 160px;
+    margin-right: 0;
+}
+
+@media(max-width: 358px) {
+    .wheel-rim--position {
+        width: 120px;
+    }
+}
+
+.wheel-rim--img {
+    position: initial;
+    clip: initial;
+    width: 160px;
+}
+
+
+@media(max-width: 358px) {
+    .wheel-rim--img {
+        width: 120px;
+    }
+}
+
+.wheel-rim--detail {
+    margin-top: 0;
+}

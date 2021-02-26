@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml" >
+<section sec:authorize="isAnonymous()" class="banner__sign-in" th:classappend="${login} ? 'banner__sign-in--display': ''">
+    <img class="banner__sign-in--close" th:src="@{/images/icon/close-button.svg}">
+    <div class="sign-in__container">
+        <h2 class="sign-in__header">Zaloguj się</h2>
+        <span th:if="${loginError != null}" class="sign-in__form-error sign-in">Nazwa użytkownika lub hasło jest niepoprawne</span>
+        <form method="post" th:action="@{/login}" class="sign-in__form">
+            <div class="sign-in__form-item">
+                <div class="sign-in__field">
+                    <input name="username" class="sign-in__form-input" required>
+                    <label class="sign-in__form-label sign-in">Nazwa użytkownika</label>
+                </div>
+                <div class="sign-in__field">
+                    <input type="password" name="password" class="sign-in__form-input" required>
+                    <label class="sign-in__form-label sign-in">Hasło</label>
+                </div>
+                <button class="sign-in__form-button">Zaloguj się</button>
+            </div>
+        </form>
+    </div>
+    <div class="sign-in__check">
+        <div class="sign-in__check-field">
+            <p class="sign-in__check-paragraph">Zapomniałem hasła</p>
+        </div>
+        <div class="sign-in__check-field">
+            <p class="sign-in__check-paragraph register">Załóż konto</p>
+        </div>
+    </div>
+</section>
+</html>
+

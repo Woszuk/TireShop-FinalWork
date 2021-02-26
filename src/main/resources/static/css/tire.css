@@ -1,0 +1,123 @@
+.menu-shop__content {
+    width: 95%;
+}
+
+.menu-shop__content-header {
+    text-align: center;
+    text-transform: uppercase;
+    margin: 30px 0;
+    font-size: 50px;
+}
+
+.menu-shop__content-list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 390px));
+    gap: 10px;
+    margin-bottom: 30px;
+    justify-content: center;
+}
+
+@media(max-width: 358px){
+    .menu-shop__content-list {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+}
+
+.menu-shop__content-item {
+    border: 2px solid black;
+}
+
+@media(max-width: 930px) {
+    .menu-shop__content-item {
+        flex-direction: column;
+    }
+}
+
+.menu-shop__info {
+    height: 100px;
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.menu-shop__img-position {
+    position: relative;
+    width: 120px;
+    margin-right: 10px;
+}
+
+.menu-shop__img {
+    position: absolute;
+    clip: rect(0px,auto,100px,0px);
+    width: 120px;
+}
+
+@media(max-width: 358px) {
+    .menu-shop__img {
+        width: 100px;
+        left: 10px;
+    }
+}
+
+.menu-shop__content-parameters {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+@media(max-width: 358px){
+    .menu-shop__content-parameters {
+        width: 120px;
+    }
+}
+
+.menu-shop__content-span {
+    font-size: 25px;
+    text-align: center;
+}
+
+@media(max-width: 358px) {
+    .menu-shop__content-span {
+        font-size: 20px;
+    }
+}
+
+.menu-shop__content-detail {
+    margin: 10px 0 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.menu-shop__content-buy{
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.menu-shop__select {
+    padding: 3px;
+    margin-left: 8px;
+    font-weight: bold;
+}
+
+.menu-shop__content-basket {
+    text-decoration: none;
+    color: white;
+    margin-left: 15px;
+    padding: 5px 10px;
+    background: rgb(49, 175, 27);
+    border: 2px solid black;
+    cursor: pointer;
+}
+
+.menu-shop__content-basket:hover {
+    background: rgb(24, 141, 4);
+}
+
+.menu-shop__content-basket:disabled{
+    cursor: not-allowed;
+    background: #666
+}

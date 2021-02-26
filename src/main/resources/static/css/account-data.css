@@ -1,0 +1,131 @@
+.my-account__right {
+    width: 70%;
+}
+
+@media(max-width: 909px) {
+    .my-account__right {
+        width: initial;
+    }
+}
+
+.my-account--position {
+    display: flex;
+}
+
+@media(max-width: 1150px) {
+    .my-account--position {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
+
+.my-account__text {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+
+.my-account__text-header {
+    font-size: 30px;
+}
+
+@media(max-width: 909px) {
+    .my-account__text-header {
+        margin-top: 20px;
+    }
+}
+
+.my-account__info {
+    width: 400px;
+    margin: 10px 10px 50px;
+    padding: 15px;
+}
+
+@media(max-width: 840px) {
+    .my-account__info {
+        padding: 0;
+    }
+}
+
+@media(max-width: 450px) {
+    .my-account__info {
+        width: 250px;
+    }
+}
+
+.my-account__info:last-child {
+    margin: 10px;
+}
+
+.my-account__info-type {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.my-account__info-header {
+    font-size: 22px;
+    font-weight: normal;
+}
+
+.my-account__info-edit {
+    position: absolute;
+    left: 260px;
+    white-space: nowrap;
+    text-decoration: none;
+    color: rgb(68, 68, 241);
+}
+
+@media(max-width: 450px) {
+    .my-account__info-edit {
+        left: 170px;
+    }
+}
+
+.my-account__info-edit:hover {
+    border-bottom: 1px solid rgb(68, 68, 241);
+}
+
+.my-account__info-data {
+    margin: 20px 10px 0;
+    display: flex;
+    padding-left: 20px;
+}
+
+@media(max-width: 450px) {
+    .my-account__info-data {
+        justify-content: center;
+        padding-left: 0;
+    }
+}
+
+.my-account__table-row {
+    align-items: center;
+    height: 35px;
+    white-space: nowrap;
+}
+
+@media (max-width: 450px) {
+    .my-account__table-row {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-bottom: 30px;
+    }
+
+    .my-account__table-row:last-child {
+        margin-bottom: 0;
+    }
+}
+
+.my-account__table-info {
+    padding-left: 8px;
+}
+
+@media(max-width: 450px) {
+    .my-account__table-info {
+        padding-top: 3px;
+        padding-left: 0;
+    }
+}

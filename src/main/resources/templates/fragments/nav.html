@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<nav class="main-navigation">
+    <div class="main-navigation__inner">
+        <div class="main-navigation__logo">
+            <a th:href="@{/}" class="main-navigation__logo-link">
+                <img th:src="@{/images/icon/logo.svg}" alt="logo" class="main-navigation__logo-image">
+                Edek
+            </a>
+        </div>
+        <ul class="main-navigation__menu">
+            <img class="main-navigation__menu-mobile--exit" th:src="@{/images/icon/close-button-white.svg}">
+            <li class="main-navigation__menu-item">
+                <a th:href="@{/}" class="main-navigation__link">
+                    <div class="main-navigation__menu-item--position">
+                        <img th:src="@{/images/icon/home.svg}" alt="logo" class="main-navigation__link-image">
+                        <h2 class="main-navigation__link-header">Home</h2>
+                    </div>
+                </a>
+            </li>
+            <li class="main-navigation__menu-item">
+                <a th:href="@{/#contact}" class="main-navigation__link">
+                    <div class="main-navigation__menu-item--position">
+                        <img th:src="@{/images/icon/contact.svg}" alt="logo" class="main-navigation__link-image">
+                        <h2 class="main-navigation__link-header">Kontakt</h2>
+                    </div>
+                </a>
+            </li>
+            <li class="main-navigation__menu-item">
+                <a th:href="@{/#route}" class="main-navigation__link">
+                    <div class="main-navigation__menu-item--position">
+                        <img th:src="@{/images/icon/route.svg}" alt="logo" class="main-navigation__link-image">
+                        <h2 class="main-navigation__link-header">Dojazd</h2>
+                    </div>
+                </a>
+            </li>
+            <li class="main-navigation__menu-item">
+                <a th:href="@{/shop/tire}" class="main-navigation__link">
+                    <div class="main-navigation__menu-item--position">
+                        <img th:src="@{/images/icon/shop.svg}" alt="logo" class="main-navigation__link-image">
+                        <h2 class="main-navigation__link-header">Sklep</h2>
+                    </div>
+                </a>
+            </li>
+            <li class="main-navigation__menu-item">
+                <a th:href="@{/basket}" class="main-navigation__link">
+                    <div class="main-navigation__menu-item--position">
+                        <img th:src="@{/images/icon/shopping-basket.svg}" alt="logo"
+                             class="main-navigation__link-image">
+                        <h2 class="main-navigation__link-header">Koszyk</h2>
+                        <span class="main-navigation__link-count" th:if="${session.basket != null}" th:text="${session.basket.size()}"></span>
+                    </div>
+                </a>
+            </li>
+            <li class="main-navigation__menu-item main-navigation__account-position">
+                <a class="main-navigation__link">
+                    <div class="main-navigation__menu-item--position">
+                        <img th:src="@{/images/icon/user.svg}" alt="logo" class="main-navigation__link-image">
+                        <h2 class="main-navigation__link-header">Konto</h2>
+                    </div>
+                </a>
+                <div class="main-navigation__account">
+                    <ul sec:authorize="isAnonymous()" class="main-navigation__account-list">
+                        <li class="main-navigation__account-item">
+                            <div class="main-navigation__account-item--link sign-in">Zaloguj się</div>
+                        </li>
+                        <li class="main-navigation__account-item">
+                            <div class="main-navigation__account-item--link sign-in">Zarejestruj się</div>
+                        </li>
+                    </ul>
+                    <ul sec:authorize="isAuthenticated()" class="main-navigation__account-list">
+                        <li class="main-navigation__account-item">
+                            <a th:href="@{/account/details}" class="main-navigation__account-item--link">Moje dane</a>
+                        </li>
+                        <li class="main-navigation__account-item">
+                            <a th:href="@{/account/orders}" class="main-navigation__account-item--link">Moje zamówienia</a>
+                        </li>
+                        <li class="main-navigation__account-item">
+                            <a th:href="@{/account/change/details}" class="main-navigation__account-item--link">Zmiana danych</a>
+                        </li>
+                        <li class="main-navigation__account-item">
+                            <a th:href="@{/account/change/address}" class="main-navigation__account-item--link">Zmiana adresu</a>
+                        </li>
+                        <li class="main-navigation__account-item">
+                            <a th:href="@{/account/change/password}" class="main-navigation__account-item--link">Zmiana hasła</a>
+                        </li>
+                        <li class="main-navigation__account-item">
+                            <a th:href="@{/logout}" class="main-navigation__account-item--link">Wyloguj się</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+        <div class="main-navigation__mobile-account">
+            <img class="main-navigation__menu-mobile--exit" th:src="@{/images/icon/close-button-white.svg}">
+            <a class="main-navigation__link">
+                <div class="main-navigation__menu-item--position">
+                    <div class="main-navigation__menu-mobile"></div>
+                    <img th:src="@{/images/icon/user.svg}" alt="logo" class="main-navigation__link-image">
+                    <h2 class="main-navigation__link-header">Konto</h2>
+                </div>
+            </a>
+            <div class="main-navigation__account--mobile">
+                <ul sec:authorize="isAnonymous()" class="main-navigation__account-list--mobile">
+                    <li class="main-navigation__account-item">
+                        <div class="main-navigation__account-item--link sign-in">Zaloguj się</div>
+                    </li>
+                    <li class="main-navigation__account-item">
+                        <div class="main-navigation__account-item--link sign-in">Zarejestruj się</div>
+                    </li>
+                </ul>
+                <ul sec:authorize="isAuthenticated()" class="main-navigation__account-list">
+                    <li class="main-navigation__account-item">
+                        <a th:href="@{/account/details}" class="main-navigation__account-item--link">Moje dane</a>
+                    </li>
+                    <li class="main-navigation__account-item">
+                        <a th:href="@{/account/orders}" class="main-navigation__account-item--link">Moje zamówienia</a>
+                    </li>
+                    <li class="main-navigation__account-item">
+                        <a th:href="@{/account/change/details}" class="main-navigation__account-item--link">Zmiana danych</a>
+                    </li>
+                    <li class="main-navigation__account-item">
+                        <a th:href="@{/account/change/address}" class="main-navigation__account-item--link">Zmiana adresu</a>
+                    </li>
+                    <li class="main-navigation__account-item">
+                        <a th:href="@{/account/change/password}" class="main-navigation__account-item--link">Zmiana hasła</a>
+                    </li>
+                    <li class="main-navigation__account-item">
+                        <a th:href="@{/logout}" class="main-navigation__account-item--link">Wyloguj się</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <button class="main-navigation__mobile-button js-main-navigation__mobile-button">
+            <img th:src="@{/images/icon/navigation.svg}" alt="Otwórz / zamknij nawigację"
+                 class="main-navigation__mobile-button-image">
+        </button>
+    </div>
+</nav>
+</html>
+

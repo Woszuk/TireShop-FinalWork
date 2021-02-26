@@ -1,0 +1,140 @@
+.main-banner {
+    background-image: url("/images/banner.jpg");
+    height: 100vh;
+    background-position: center center;
+    background-size: cover;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    z-index: 1;
+}
+
+@media(max-height: 639px){
+    .main-banner{
+        height: 40em;
+    }
+}
+
+@media(max-height: 815px) {
+    .banner__register.banner__sign-in--display ~ .scroll .main-banner{
+        height: 50em;
+    }
+}
+
+.main-banner__container {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    top: 34vh;
+    transform: translate(0, -33%);
+    width: 100%;
+    padding: 35px 0;
+    color: #333;
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 0 10px #eee;
+}
+
+@media(max-width: 1367px){
+    .main-banner__container {
+        top: 34vh;
+    }
+}
+
+@media(max-width: 991px) {
+    .main-banner__container {
+        padding: 20px 0 20px;
+        width: 100%;
+    }
+}
+
+@media(max-height: 639px){
+    .main-banner__container {
+        top: 13.5em;
+    }
+}
+
+.main-banner__header-one {
+    padding: 0 0 10px;
+    font-size: 35px;
+    font-weight: 900;
+    text-align: center;
+}
+
+@media(max-width: 991px) {
+    .main-banner__header-one {
+        font-size: 30px;
+    }
+}
+
+@media(max-width: 660px) {
+    .main-banner__header-one {
+        font-size: 24px;
+    }
+}
+
+.main-banner__header-two {
+    font-size: 25px;
+    padding: 0 0 60px;
+}
+
+@media(max-width: 991px) {
+    .main-banner__header-two {
+        font-size: 20px;
+        padding: 0 0 30px;
+    }
+}
+
+@media(max-width: 660px) {
+    .main-banner__header-two {
+        font-size: 15px;
+        padding: 0 0 25px;
+    }
+}
+
+.main-banner__header-three {
+    padding: 3px;
+    font-size: 28px;
+    font-weight: bold;
+    text-align: center;
+}
+
+@media(max-width: 991px) {
+    .main-banner__header-three {
+        font-size: 22px;
+    }
+}
+
+@media(max-width: 660px) {
+    .main-banner__header-three {
+        margin: 0 10px;
+        font-size: 18px;
+    }
+}
+
+.main-banner__container-link {
+    position: absolute;
+    bottom: 30vh;
+    transform: translate(0%, 25%);  
+}
+
+@media(max-height: 639px){
+    .main-banner__container-link {
+        bottom: initial;
+        bottom: 12em;
+    }
+}
+
+.main-banner__link {
+    text-transform: uppercase;
+    text-decoration: none;
+    color: white;
+    border: 3px solid white;
+    background: rgba(0, 0, 0, 0.4);
+    padding: 20px 15px;
+    transition: 0.5s;
+}
+
+.main-banner__link:hover {
+    background: #222;
+}
