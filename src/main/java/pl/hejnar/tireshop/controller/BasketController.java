@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import pl.hejnar.tireshop.entity.User;
 import pl.hejnar.tireshop.service.BasketServiceImpl;
-import pl.hejnar.tireshop.service.FeaturesService;
 
 import javax.servlet.http.HttpSession;
 
@@ -29,16 +28,13 @@ public class BasketController {
     @GetMapping("/basket")
     public String basket(HttpSession ses, Model model){
         ses.setAttribute("currentPage", "basket");
-        if(ses.getAttribute("scrollTo") != null){
-            ses.removeAttribute("scrollTo");
-        }
-
         basketService.productInSession(ses,model);
         return "basket";
     }
 
     @GetMapping("/basket/item/remove")
     public String deleteItem (HttpSession ses, @RequestParam(required = false) Long id, @RequestParam(required = false) Double scrollTo, RedirectAttributes redAttr){
+        redAttr.addFlashAttribute("scrollTo", scrollTo);
         if(id == null || scrollTo == null){
             return "redirect:/basket";
         }
@@ -55,6 +51,7 @@ public class BasketController {
 
     @GetMapping("/basket/item/quantity")
     public String changeQuantity(HttpSession ses, @RequestParam(required = false) String type, @RequestParam(required = false) Long id, @RequestParam(required = false) Double scrollTo, RedirectAttributes redAttr){
+        redAttr.addFlashAttribute("scrollTo", scrollTo);
         if(type == null || id == null || scrollTo == null){
             return "redirect:/basket";
         }

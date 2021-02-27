@@ -10,18 +10,18 @@ public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @Size(min = 3, message = "Minimum 3 litery")
-    @Pattern(regexp = "[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ]+", message = "Dozwolone tylko litery")
+    @Size(min = 3)
+    @Pattern(regexp = "[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ]+")
     private String street;
     @NotEmpty(message = "Pole wymagane")
-    @Pattern(regexp = "^[1-9]([0-9]+([a-zA-Z]{1,2})?)|^[1-9]([a-zA-Z]{1,2})?", message = "Podaj prawidłowe dane (np.: 1, 1a)")
+    @Pattern(regexp = "^[1-9]([0-9]+([a-zA-Z]{1,2})?)|^[1-9]([a-zA-Z]{1,2})?")
     private String numberOfBuilding;
-    @Pattern(regexp = "^[a-zA-Z0-9]+|^\\s?", message = "Dozwolone tylko cyfry i litery")
+    @Pattern(regexp = "^[a-zA-Z0-9]+|^\\s?")
     private String apartmentNumber;
     @Pattern(regexp = "\\d{2}-\\d{3}")
     private String postalCode;
-    @Size(min = 2, message = "Minimum 2 litery")
-    @Pattern(regexp = "[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ]+", message = "Dozwolone tylko litery")
+    @Size(min = 2)
+    @Pattern(regexp = "[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ]+")
     private String city;
     @OneToOne(mappedBy = "address")
     private User user;

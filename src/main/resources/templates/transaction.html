@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wulkanizacja Edek</title>
+
+    <link rel="icon" type="image/x-icon" href="/images/icon/tire.svg">
+    <link rel="stylesheet" href="/css/global.css">
+    <link rel="stylesheet" href="/css/main-navigation.css">
+    <link rel="stylesheet" href="/css/sign-in.css">
+    <link rel="stylesheet" href="/css/transaction.css">
+    <link rel="stylesheet" href="/css/basket.css">
+    <link rel="stylesheet" href="/css/change-data.css">
+
+
+
+</head>
+
+<body>
+<section class="banner__sign-in" th:replace="fragments/section-sign-in::section">
+</section>
+
+<section class="banner__sign-in banner__register" th:replace="fragments/section-registration::section">
+</section>
+
+<div class="scroll">
+    <nav class="main-navigation" th:replace="fragments/nav::nav">
+    </nav>
+    <section class="transaction__section">
+        <form method="post">
+            <h2 class="transaction__header">Podsumowanie</h2>
+            <div class="transaction__position">
+                <div class="transaction__container">
+                    <div class="transaction__address">
+                        <h2 class="address__header">Dane do wysyłki</h2>
+                        <div class="address__info">
+                            <div th:if="${loggedUser.address != null}">
+                                <p class="address__paragraph" th:text="${loggedUser.firstName + ' ' + loggedUser.lastName}"></p>
+                                <p class="address__paragraph" th:text="${loggedUser.address.street + ' ' + loggedUser.address.numberOfBuilding + '/' + loggedUser.address.apartmentNumber}"></p>
+                                <p class="address__paragraph" th:text="${loggedUser.address.postalCode + ' ' + loggedUser.address.city}"></p>
+                                <p class="address__paragraph" th:if="${loggedUser.phoneNumber != null}" th:text="${loggedUser.phoneNumber}"></p>
+                                <input th:if="${loggedUser.phoneNumber == null}" name="phoneNumber" class="address__input" placeholder="Numer Telefonu"
+                                       th:value="${phoneNumberError}" required>
+                                <div th:if="${phoneNumberError != null}" class="address__error">Podaj poprawny numer telefonu (np.: +48 123 456
+                                    789, 123 456 789)</div>
+                            </div>
+                            <form th:if="${loggedUser.address == null}" th:object="${address}">
+                                <table class="my-account__info-table">
+                                    <tr class="my-account__table-row">
+                                        <td>Imię i nazwisko:</td>
+                                        <td class="my-account__table-info">
+                                            <p class="address__paragraph" th:text="${loggedUser.firstName + ' ' + loggedUser.lastName}"></p>
+                                        </td>
+                                    </tr>
+                                    <tr class="my-account__table-row">
+                                        <td>Ulica:</td>
+                                        <td class="my-account__table-info">
+                                            <input th:field="*{street}" class="my-account__form-input" required/>
+                                            <div th:if="${#fields.hasErrors('street')}"
+                                                 class="my-account__form-error">Dozwolone tylko litery oraz minimum 3
+                                                znaki
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr class="my-account__table-row">
+                                        <td>Numer budynku:</td>
+                                        <td class="my-account__table-info">
+                                            <input th:field="*{numberOfBuilding}" class="my-account__form-input" required/>
+                                            <div th:if="${#fields.hasErrors('numberOfBuilding')}"
+                                                 class="my-account__form-error">Podaj
+                                                prawidłowe dane (np.: 1, 1a)
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr class="my-account__table-row">
+                                        <td>Numer mieszkania:</td>
+                                        <td class="my-account__table-info">
+                                            <input th:field="*{apartmentNumber}" class="my-account__form-input"/>
+                                            <div th:if="${#fields.hasErrors('apartmentNumber')}"
+                                                 th:errors="*{apartmentNumber}" class="my-account__form-error">Dozwolone
+                                                tylko cyfry i litery
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr class="my-account__table-row">
+                                        <td>Kod pocztowy:</td>
+                                        <td class="my-account__table-info">
+                                            <input th:field="*{postalCode}" maxlength="6" class="my-account__form-input postal-code" required/>
+                                            <div th:if="${#fields.hasErrors('postalCode')}"
+                                                 class="my-account__form-error">Podaj prawidłowy kod pocztowy
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr class="my-account__table-row">
+                                        <td>Miejscowość:</td>
+                                        <td class="my-account__table-info">
+                                            <input th:field="*{city}" class="my-account__form-input" required/>
+                                            <div th:if="${#fields.hasErrors('city')}"
+                                                 class="my-account__form-error">Dozwolone tylko litery oraz minimum 2
+                                                litery
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Numer telefonu:</td>
+                                        <td class="my-account__table-info">
+                                            <p class="address__paragraph" th:if="${loggedUser.phoneNumber != null}" th:text="${loggedUser.phoneNumber}"></p>
+                                            <input th:if="${loggedUser.phoneNumber == null}" name="phoneNumber" class="my-account__form-input"
+                                                   th:value="${phoneNumberError}" required>
+                                            <div th:if="${phoneNumberError != null}" class="my-account__form-error">Podaj poprawny numer telefonu (np.: +48 123 456
+                                                789, 123 456 789)</div>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <input type="hidden" name="scrollTo" value="${scrollTo}">
+                                <input type="hidden" name="addressId" th:value="*{id}">
+                            </form>
+                        </div>
+                        <div class="address__link-position">
+                            <a th:href="@{/account/change/address}" th:if="${loggedUser.address != null}" class="address__link">Zmień adres</a>
+                        </div>
+                    </div>
+                    <div class="transaction__order">
+                        <h2 class="order__header">Przedmioty i sposób dostawy</h2>
+                        <div class="order__item">
+                            <div class="order__info" th:each="bask : ${basket}">
+                                <div class="order__info-left">
+                                    <div class="order__img-position">
+                                        <img th:if="${bask.product.type == 'tire'}" th:src="@{'/images/tire/' + ${bask.product.img}}" alt="tire" class="order__img">
+                                        <img th:if="${bask.product.type == 'wheel-rim'}" th:src="@{'/images/wheel-rims/' + ${bask.product.img}}" alt="wheel-rim" class="order__img">
+                                    </div>
+                                    <div class="order__item-info">
+                                        <p class="order__item-paragraph" th:text="${bask.product.brand + ' ' + bask.product.model + ' ' + bask.product.size}"></p>
+                                        <span th:if="${bask.quantity >= 2}" class="order__item-span" th:text="${bask.quantity + ' x ' + bask.product.price + ' zł'}"></span>
+                                    </div>
+                                </div>
+                                <div class="order__info-right">
+                                    <div class="order__price" th:text="${(bask.quantity * bask.product.price) + ' zł'}"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="order__delivery">
+                            <ul class="order__list">
+                                <li class="order__list-item" th:each="delivery, iStat : ${deliveries}">
+                                    <div class="order__info-left">
+                                        <div class="order__radio-position">
+                                            <input th:if="${iStat.count <=1}" th:id="${delivery.name}" type="radio" name="delivery" th:value="${delivery.name}" class="order__radio" checked>
+                                            <input th:if="${iStat.count >=2}" th:id="${delivery.name}" type="radio" name="delivery" th:value="${delivery.name}" class="order__radio">
+                                        </div>
+                                        <label th:for="${delivery.name}" class="order__delivery-info">
+                                            <div class="order__delivery-way">Kurier, <span class="order__delivery-way--span" th:text="${delivery.name}"></span>
+                                            </div>
+                                        </label>
+                                    </div>
+                                    <div class="order__info-right">
+                                        <div class="order__price"><span class="order__price-span" th:text="${delivery.price}"></span> zł</div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="transaction__payment">
+                        <h2 class="payment__header">Metoda płatności</h2>
+                        <div class="">
+                            <ul class="order__list">
+                                <li class="order__list-item" th:each="paymentMethod, iStat : ${paymentMethods}">
+                                    <div class="order__info-left">
+                                        <div class="order__radio-position">
+                                            <input th:if="${iStat.count <=1}" th:id="${iStat.count}" type="radio" name="paymentMethod" class="order__radio" th:value="${paymentMethod.type}" checked>
+                                            <input th:if="${iStat.count >=2}" th:id="${iStat.count}" type="radio" name="paymentMethod" class="order__radio" th:value="${paymentMethod.type}">
+                                        </div>
+                                        <label th:for="${iStat.count}" class="order__delivery-info">
+                                            <div class="order__delivery-way" th:text="${paymentMethod.description}"></div>
+                                        </label>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="summary__container transaction">
+                    <div class="summary transaction">
+                        <h2 class="summary__header">Podsumowanie zakupów:</h2>
+                        <div class="summary__position-arrow">
+                            <div class="summary__arrow"></div>
+                            <div class="summary__arrow-text">Płacę</div>
+                        </div>
+                        <div class="summary__info">
+                            <div class="summary__price">
+                                <p class="summary__price-paragraph">Wartość przedmiotów:</p>
+                                <p class="summary__price-paragraph"><span
+                                        class="summary__price-span itemPrice" th:text="${session.totalPrice}"></span> zł</p>
+                            </div>
+                            <div class="summary__price delivery">
+                                <p class="summary__price-paragraph">Dostawa:</p>
+                                <p class="summary__price-paragraph"><span
+                                        class="summary__price-span deliveryPrice"></span>
+                                    zł</p>
+                            </div>
+                            <div class="summary__price">
+                                <p class="summary__price-paragraph">Do zapłaty:</p>
+                                <p class="summary__price-paragraph"><span
+                                        class="summary__price-span totalPrice"></span> zł
+                                </p>
+                            </div>
+                        </div>
+                        <button type="submit" class="summary__link transaction__button">
+                            Kupuję i płacę
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </section>
+    <div class="background"></div>
+</div>
+
+<script src="/js/main-navigation.js"></script>
+<script src="/js/account-navigation.js"></script>
+<script src="/js/summary.js"></script>
+<script src="/js/transaction.js"></script>
+<script src="/js/postal-code.js"></script>
+</body>
+
+</html>

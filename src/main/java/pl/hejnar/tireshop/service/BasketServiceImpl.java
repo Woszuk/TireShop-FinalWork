@@ -38,7 +38,7 @@ public class BasketServiceImpl implements BasketService {
                 basketItems.add(basketItem);
             }
 
-            model.addAttribute("totalPrice", totalPrice);
+            ses.setAttribute("totalPrice", totalPrice);
             model.addAttribute("basketItems", basketItems);
             ses.setAttribute("basket", basketItems);
         }

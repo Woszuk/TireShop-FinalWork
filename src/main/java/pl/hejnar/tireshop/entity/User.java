@@ -20,11 +20,11 @@ public class User {
     private String email;
     @Size(min = 3)
     @Column(unique = true)
-    @Pattern(regexp = "^[a-zA-Z]([a-zA-Z0-9])+", message = "Tylko małe i duże litery oraz cyfry")
+    @Pattern(regexp = "^[a-zA-Z]([a-zA-Z0-9])+")
     private String username;
-    @Pattern(regexp = "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{8,}", message = "Hasło musi zawierać małe i duże litery oraz cyfry")
+    @Pattern(regexp = "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{8,}")
     private String password;
-    @Pattern(regexp = "(\\+48\\s?)?([0-9]{3}\\s?){2}[0-9]{3}", message = "Podaj poprawny numer telefonu (np.: +48 123 456 789, 123 456 789)")
+    @Pattern(regexp = "(\\+48\\s?)?([0-9]{3}\\s?){2}[0-9]{3}")
     private String phoneNumber;
     @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     private Set<Role> roles;

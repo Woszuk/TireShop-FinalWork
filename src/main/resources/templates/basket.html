@@ -80,7 +80,7 @@
                         <div class="summary__arrow-text">Płacę</div>
                     </div>
                     <div class="summary__info">
-                        <p class="summary__price-paragraph">Do zapłaty: <span class="summary__price-span" th:text="${totalPrice} + ' zł'"></span>
+                        <p class="summary__price-paragraph">Do zapłaty: <span class="summary__price-span" th:text="${session.totalPrice} + ' zł'"></span>
                         </p>
                     </div>
                     <a th:href="@{/transaction}" class="summary__link">

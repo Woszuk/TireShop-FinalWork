@@ -76,8 +76,8 @@
                                     <tr class="my-account__table-row">
                                         <td>Ulica:</td>
                                         <td class="my-account__table-info">
-                                            <input th:field="*{street}" class="my-account__form-input"/>
-                                            <div th:if="${#fields.hasErrors('street')}" th:errors="*{street}"
+                                            <input th:field="*{street}" class="my-account__form-input" required/>
+                                            <div th:if="${#fields.hasErrors('street')}"
                                                  class="my-account__form-error">Dozwolone tylko litery oraz minimum 3
                                                 znaki
                                             </div>
@@ -86,9 +86,9 @@
                                     <tr class="my-account__table-row">
                                         <td>Numer budynku:</td>
                                         <td class="my-account__table-info">
-                                            <input th:field="*{numberOfBuilding}" class="my-account__form-input"/>
+                                            <input th:field="*{numberOfBuilding}" class="my-account__form-input" required/>
                                             <div th:if="${#fields.hasErrors('numberOfBuilding')}"
-                                                 th:errors="*{numberOfBuilding}" class="my-account__form-error">Podaj
+                                                 class="my-account__form-error">Podaj
                                                 prawidłowe dane (np.: 1, 1a)
                                             </div>
                                         </td>
@@ -98,7 +98,7 @@
                                         <td class="my-account__table-info">
                                             <input th:field="*{apartmentNumber}" class="my-account__form-input"/>
                                             <div th:if="${#fields.hasErrors('apartmentNumber')}"
-                                                 th:errors="*{apartmentNumber}" class="my-account__form-error">Dozwolone
+                                                 class="my-account__form-error">Dozwolone
                                                 tylko cyfry i litery
                                             </div>
                                         </td>
@@ -106,8 +106,8 @@
                                     <tr class="my-account__table-row">
                                         <td>Kod pocztowy:</td>
                                         <td class="my-account__table-info">
-                                            <input th:field="*{postalCode}" class="my-account__form-input"/>
-                                            <div th:if="${#fields.hasErrors('postalCode')}" th:errors="*{postalCode}"
+                                            <input th:field="*{postalCode}" maxlength="6" class="my-account__form-input postal-code" required/>
+                                            <div th:if="${#fields.hasErrors('postalCode')}"
                                                  class="my-account__form-error">Podaj prawidłowy kod pocztowy
                                             </div>
                                         </td>
@@ -115,8 +115,8 @@
                                     <tr class="my-account__table-row">
                                         <td>Miejscowość:</td>
                                         <td class="my-account__table-info">
-                                            <input th:field="*{city}" class="my-account__form-input"/>
-                                            <div th:if="${#fields.hasErrors('city')}" th:errors="*{city}"
+                                            <input th:field="*{city}" class="my-account__form-input" required/>
+                                            <div th:if="${#fields.hasErrors('city')}"
                                                  class="my-account__form-error">Dozwolone tylko litery oraz minimum 2
                                                 litery
                                             </div>
@@ -140,6 +140,7 @@
 <script src="/js/account-navigation.js"></script>
 <script src="/js/summary.js"></script>
 <script src="/js/account-menu.js"></script>
+<script src="/js/postal-code.js"></script>
 </body>
 
 </html>

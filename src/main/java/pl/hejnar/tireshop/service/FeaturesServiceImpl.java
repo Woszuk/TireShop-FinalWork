@@ -42,7 +42,7 @@ public class FeaturesServiceImpl implements FeaturesService {
     @Override
     public void saveProductToUser(HttpSession ses, Principal principal) {
         User user = userRepository.findByUsername(principal.getName());
-        List<BasketItem> basketItemsWithUser = basketItemRepository.findBasketItemsByUserId(user);
+        List<BasketItem> basketItemsWithUser = basketItemRepository.findBasketItemsByUser(user);
         if (ses.getAttribute("basket") != null) {
             List<BasketItem> basketItems = (List<BasketItem>) ses.getAttribute("basket");
 
@@ -69,7 +69,7 @@ public class FeaturesServiceImpl implements FeaturesService {
                     basketItemRepository.saveUser(user, basketItem.getId());
                 }
             }
-            ses.setAttribute("basket", basketItemRepository.findBasketItemsByUserId(user));
+            ses.setAttribute("basket", basketItemRepository.findBasketItemsByUser(user));
         }else if (basketItemsWithUser.size() >=1){
             ses.setAttribute("basket", basketItemsWithUser);
         }
