@@ -41,7 +41,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean checkUser(User user, RedirectAttributes redAttr) {
+    public boolean checkUserAndPassword(User user, RedirectAttributes redAttr, String repeatPassword) {
         boolean check = false;
         if(userRepository.findByEmail(user.getEmail()) != null) {
             redAttr.addFlashAttribute("errorEmail", true);
@@ -52,6 +52,14 @@ public class UserServiceImpl implements UserService {
             redAttr.addFlashAttribute("errorUsername", true);
             check = true;
         }
+
+        if(!(user.getPassword().equals(repeatPassword))){
+            redAttr.addFlashAttribute("errorPassword", true);
+            check = true;
+        }
+
+        redAttr.addFlashAttribute("someChange", true);
+        redAttr.addFlashAttribute("user", user);
 
         return check;
     }

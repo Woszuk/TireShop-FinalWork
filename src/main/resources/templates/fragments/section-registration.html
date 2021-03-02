@@ -26,16 +26,17 @@
                 <div class="sign-in__field">
                     <input name="userName" th:field="*{username}" class="sign-in__form-input" required>
                     <label class="sign-in__form-label">Nazwa użytkownika</label>
-                    <span class="sign-in__form-error" th:if="${#fields.hasErrors('username')}">Tylko lietry i cyfry oraz minimum 3 znaki</span>
-                    <span class="sign-in__form-error" th:if="${errorUsername != null}">Podana nazwa użykownika już istnieje</span>
+                    <div class="sign-in__form-error" th:if="${#fields.hasErrors('username')}">Tylko lietry i cyfry oraz minimum 3 znaki</div>
+                    <div class="sign-in__form-error" th:if="${errorUsername != null}">Podana nazwa użykownika już istnieje</div>
                 </div>
                 <div class="sign-in__field">
                     <input type="password" th:field="*{password}" name="password" class="sign-in__form-input" required>
                     <label class="sign-in__form-label">Hasło</label>
-                    <span class="sign-in__form-error" th:if="${#fields.hasErrors('password')}">Hasło musi zawierać małe i duże litery oraz cyfry</span>
+                    <div class="sign-in__form-error" th:if="${#fields.hasErrors('password')}">Hasło musi zawierać małe i duże litery oraz cyfry</div>
+                    <div class="sign-in__form-error" th:if="${errorPassword != null}">Hasła nie są identyczne</div>
                 </div>
                 <div class="sign-in__field">
-                    <input type="password"  name="password2" class="sign-in__form-input" required>
+                    <input type="password"  name="repeatPassword" class="sign-in__form-input" required>
                     <label class="sign-in__form-label">Powtórz hasło</label>
                 </div>
                 <button class="sign-in__form-button">Zarejestruj</button>
