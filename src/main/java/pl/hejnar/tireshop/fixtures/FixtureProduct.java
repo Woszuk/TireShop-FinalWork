@@ -1,7 +1,6 @@
 package pl.hejnar.tireshop.fixtures;
 
 import org.springframework.stereotype.Component;
-import pl.hejnar.tireshop.entity.Product;
 import pl.hejnar.tireshop.entity.ShopProduct;
 import pl.hejnar.tireshop.repository.ShopProductRepository;
 
