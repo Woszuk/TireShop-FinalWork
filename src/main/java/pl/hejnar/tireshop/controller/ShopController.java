@@ -5,7 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import pl.hejnar.tireshop.entity.User;
-import pl.hejnar.tireshop.repository.ProductRepository;
+import pl.hejnar.tireshop.repository.ShopProductRepository;
 import pl.hejnar.tireshop.service.FeaturesService;
 import pl.hejnar.tireshop.service.ShopServiceImpl;
 
@@ -16,12 +16,12 @@ import java.security.Principal;
 @RequestMapping("/shop")
 public class ShopController {
 
-    private final ProductRepository productRepository;
+    private final ShopProductRepository shopProductRepository;
     private final ShopServiceImpl shopService;
     private final FeaturesService featuresService;
 
-    public ShopController(ProductRepository productRepository, ShopServiceImpl shopService, FeaturesService featuresService) {
-        this.productRepository = productRepository;
+    public ShopController(ShopProductRepository shopProductRepository, ShopServiceImpl shopService, FeaturesService featuresService) {
+        this.shopProductRepository = shopProductRepository;
         this.shopService = shopService;
         this.featuresService = featuresService;
     }
@@ -34,14 +34,14 @@ public class ShopController {
     @GetMapping("/tire")
     public String tireShop(Model model, HttpSession ses){
         ses.setAttribute("currentPage", "tire");
-        model.addAttribute("tires", productRepository.findAllByType("tire"));
+        model.addAttribute("tires", shopProductRepository.findAllByType("tire"));
         return "tire";
     }
 
     @GetMapping("/wheel-rim")
     public String wheelRimShop(Model model, HttpSession ses){
         ses.setAttribute("currentPage", "wheelRim");
-        model.addAttribute("wheelRims", productRepository.findAllByType("wheel-rim"));
+        model.addAttribute("wheelRims", shopProductRepository.findAllByType("wheel-rim"));
         return "wheel-rim";
     }
 

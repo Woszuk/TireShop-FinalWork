@@ -27,6 +27,7 @@
     </nav>
     <section class="basket__section">
         <h2 class="basket__header">Koszyk</h2>
+        <div th:if="${errorItem != null}" class="basket_error">Błąd koszyka</div>
         <div class="basket__container">
             <h2 th:if="${session.basket == null}" class="basket__container-header">Twój koszyk jest pusty</h2>
             <ul th:if="${session.basket != null}"  class="basket__container-list">
@@ -80,7 +81,7 @@
                         <div class="summary__arrow-text">Płacę</div>
                     </div>
                     <div class="summary__info">
-                        <p class="summary__price-paragraph">Do zapłaty: <span class="summary__price-span" th:text="${totalPrice} + ' zł'"></span>
+                        <p class="summary__price-paragraph">Do zapłaty: <span class="summary__price-span" th:text="${session.totalPrice} + ' zł'"></span>
                         </p>
                     </div>
                     <a th:href="@{/transaction}" class="summary__link">

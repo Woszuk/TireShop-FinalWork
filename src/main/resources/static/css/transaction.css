@@ -28,6 +28,12 @@
     width: 60%;
 }
 
+@media(max-width: 767px){
+    .transaction__container {
+        width: 95%;
+    }
+}
+
 .transaction__address {
     border: 1px solid black;
     padding: 20px 20px 20px 30px;
@@ -160,8 +166,26 @@
     margin-bottom: 20px;
 }
 
+@media(max-width: 1025px){
+    .summary.transaction {
+        right: -338.2px;
+    }
+}
+
+@media(max-width:767px){
+    .summary.transaction {
+        right: -270.3px;
+    }
+}
+
 .summary__container.transaction {
     width: 35%;
+}
+
+@media(max-width: 1025px){
+    .summary__container.transaction {
+        width: 0;
+    }
 }
 
 .summary__price {

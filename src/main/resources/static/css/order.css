@@ -1,6 +1,6 @@
 .orders__info {
     border: 1px solid black;
-    padding: 20px;
+    padding: 20px 20px 0;
     margin: 10px 0 20px 30px;
     display: flex;
     flex-direction: column;
@@ -50,15 +50,36 @@
 }
 
 .orders__info-price {
-    position: relative;
-    height: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
     border-top: 2px solid black;
+}
+
+.orders__info-address {
+    margin-top: 10px;
+    color: #092241;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.address__info {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.orders__info-address--details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    line-height: 1.5;
+    padding: 5px;
 }
 
 .orders__info-price--paragraph {
     text-transform: uppercase;
-    position: absolute;
-    right: 0;
     margin-top: 10px;
     font-size: 18px;
 }

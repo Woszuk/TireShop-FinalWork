@@ -4,7 +4,7 @@ import org.springframework.stereotype.Service;
 import pl.hejnar.tireshop.entity.BasketItem;
 import pl.hejnar.tireshop.entity.User;
 import pl.hejnar.tireshop.repository.BasketItemRepository;
-import pl.hejnar.tireshop.repository.ProductRepository;
+import pl.hejnar.tireshop.repository.ShopProductRepository;
 import pl.hejnar.tireshop.repository.UserRepository;
 
 import javax.servlet.http.HttpSession;
@@ -15,12 +15,12 @@ import java.util.List;
 @Service
 public class ShopServiceImpl implements ShopService {
 
-    private final ProductRepository productRepository;
+    private final ShopProductRepository shopProductRepository;
     private final BasketItemRepository basketItemRepository;
     private final UserRepository userRepository;
 
-    public ShopServiceImpl(ProductRepository productRepository, BasketItemRepository basketItemRepository, UserRepository userRepository) {
-        this.productRepository = productRepository;
+    public ShopServiceImpl(ShopProductRepository shopProductRepository, BasketItemRepository basketItemRepository, UserRepository userRepository) {
+        this.shopProductRepository = shopProductRepository;
         this.basketItemRepository = basketItemRepository;
         this.userRepository = userRepository;
     }
@@ -47,7 +47,7 @@ public class ShopServiceImpl implements ShopService {
         }
 
         if(!check){
-            BasketItem basketItem = new BasketItem().setQuantity(quantityToBuy).setProduct(productRepository.getOne(id));
+            BasketItem basketItem = new BasketItem().setQuantity(quantityToBuy).setProduct(shopProductRepository.getOne(id));
             basketItemList.add(basketItem);
             try{
                 User user = userRepository.findByUsername(principal.getName());

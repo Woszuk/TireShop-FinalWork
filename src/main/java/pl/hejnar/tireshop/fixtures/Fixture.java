@@ -9,11 +9,15 @@ public class Fixture {
     private final FixtureRole fixtureRole;
     private final FixtureUserAdmin fixtureUserAdmin;
     private final FixtureProduct fixtureProduct;
+    private final FixtureDelivery fixtureDelivery;
+    private final FixturePaymentMethod fixturePaymentMethod;
 
-    public Fixture(FixtureRole fixtureRole, FixtureUserAdmin fixtureUserAdmin, FixtureProduct fixtureProduct) {
+    public Fixture(FixtureRole fixtureRole, FixtureUserAdmin fixtureUserAdmin, FixtureProduct fixtureProduct, FixtureDelivery fixtureDelivery, FixturePaymentMethod fixturePaymentMethod) {
         this.fixtureRole = fixtureRole;
         this.fixtureUserAdmin = fixtureUserAdmin;
         this.fixtureProduct = fixtureProduct;
+        this.fixtureDelivery = fixtureDelivery;
+        this.fixturePaymentMethod = fixturePaymentMethod;
     }
 
     @EventListener(ApplicationReadyEvent.class)
@@ -21,5 +25,7 @@ public class Fixture {
         fixtureRole.addRoleToDatabase();
         fixtureUserAdmin.addUserToDatabase();
         fixtureProduct.addProductToDatabase();
+        fixtureDelivery.addDeliveryToDatabase();
+        fixturePaymentMethod.addPaymentMethodsToDatabase();
     }
 }

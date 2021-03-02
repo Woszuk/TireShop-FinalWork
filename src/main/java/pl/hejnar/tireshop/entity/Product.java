@@ -1,16 +1,10 @@
 package pl.hejnar.tireshop.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.math.BigDecimal;
 
-@Entity
+@MappedSuperclass
 public class Product {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
     private String img;
     private String type;
     private String brand;
@@ -23,13 +17,14 @@ public class Product {
 
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public Product setId(Long id) {
-        this.id = id;
-        return this;
+    public Product(String img, String type, String brand, String model, String size, BigDecimal price, int quantity) {
+        this.img = img;
+        this.type = type;
+        this.brand = brand;
+        this.model = model;
+        this.size = size;
+        this.price = price;
+        this.quantity = quantity;
     }
 
     public String getImg() {

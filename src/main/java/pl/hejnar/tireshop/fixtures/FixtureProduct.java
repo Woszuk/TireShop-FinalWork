@@ -2,79 +2,33 @@ package pl.hejnar.tireshop.fixtures;
 
 import org.springframework.stereotype.Component;
 import pl.hejnar.tireshop.entity.Product;
-import pl.hejnar.tireshop.repository.ProductRepository;
+import pl.hejnar.tireshop.entity.ShopProduct;
+import pl.hejnar.tireshop.repository.ShopProductRepository;
 
 import java.math.BigDecimal;
 
 @Component
 public class FixtureProduct {
 
-    private final ProductRepository productRepository;
+    private final ShopProductRepository shopProductRepository;
 
-    public FixtureProduct(ProductRepository productRepository) {
-        this.productRepository = productRepository;
+    public FixtureProduct(ShopProductRepository shopProductRepository) {
+        this.shopProductRepository = shopProductRepository;
     }
 
     public void addProductToDatabase () {
-        Product product = new Product()
-                .setType("wheel-rim")
-                .setImg("sqn-15-anzio-turn-polar.png")
-                .setBrand("Anzio")
-                .setModel("Turn Polar")
-                .setSize("5x100 15\"")
-                .setPrice(new BigDecimal(315))
-                .setQuantity(3);
+        ShopProduct product = new ShopProduct("sqn-15-anzio-turn-polar.png", "wheel-rim", "Anzio", "Turn Polar", "5x100 15\"", new BigDecimal(315), 3);
+        ShopProduct product2 = new ShopProduct("alutec-grip.png", "wheel-rim", "Atulec", "Grip", "5x114.3 16\"", new BigDecimal(319), 9);
+        ShopProduct product3 = new ShopProduct("ronal-r46-grey.png", "wheel-rim", "Ronal", "R46 Grey", "4x100 15\"", new BigDecimal(299), 0);
+        ShopProduct product4 = new ShopProduct("debica-frigo.png", "tire", "Dębica", "Frigo 2", "205/55 R16", new BigDecimal(205), 3);
+        ShopProduct product5 = new ShopProduct("michelin-alpin-6.png", "tire", "Michellin", "Alpin 6", "205/55 R16", new BigDecimal(430), 0);
+        ShopProduct product6 = new ShopProduct("pirelli-sottozero-serie-3.png", "tire", "Pirelli", "SottoZero Serie 3", "225/55 R17", new BigDecimal(497), 4);
 
-        Product product2 = new Product()
-                .setType("wheel-rim")
-                .setImg("alutec-grip.png")
-                .setBrand("Atulec")
-                .setModel("Grip")
-                .setSize("5x114.3 16\"")
-                .setPrice(new BigDecimal(319))
-                .setQuantity(9);
-
-        Product product3 = new Product()
-                .setType("wheel-rim")
-                .setImg("ronal-r46-grey.png")
-                .setBrand("Ronal")
-                .setModel("R46 Grey")
-                .setSize("4x100 15\"")
-                .setPrice(new BigDecimal(299))
-                .setQuantity(0);
-
-        Product product4 = new Product()
-                .setType("tire")
-                .setImg("debica-frigo.png")
-                .setBrand("Dębica")
-                .setModel("Frigo 2")
-                .setSize("205/55 R16")
-                .setPrice(new BigDecimal(205))
-                .setQuantity(3);
-
-        Product product5 = new Product()
-                .setType("tire")
-                .setImg("michelin-alpin-6.png")
-                .setBrand("Michellin")
-                .setModel("Alpin 6")
-                .setSize("205/55 R16")
-                .setPrice(new BigDecimal(430))
-                .setQuantity(0);
-
-        Product product6 = new Product()
-                .setType("tire")
-                .setImg("pirelli-sottozero-serie-3.png")
-                .setBrand("Pirelli")
-                .setModel("SottoZero Serie 3")
-                .setSize("225/55 R17")
-                .setPrice(new BigDecimal(497))
-                .setQuantity(4);
-
-        productRepository.save(product);
-        productRepository.save(product2);
-        productRepository.save(product3);
-        productRepository.save(product4);
-        productRepository.save(product5);
-        productRepository.save(product6);
+        shopProductRepository.save(product);
+        shopProductRepository.save(product2);
+        shopProductRepository.save(product3);
+        shopProductRepository.save(product4);
+        shopProductRepository.save(product5);
+        shopProductRepository.save(product6);
     }
 }

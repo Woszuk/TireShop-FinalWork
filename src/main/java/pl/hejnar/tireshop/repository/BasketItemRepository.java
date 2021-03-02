@@ -17,7 +17,7 @@ public interface BasketItemRepository extends JpaRepository<BasketItem, Long> {
     BasketItem findBasketItemById(Long id);
 
     @Query("SELECT bi FROM BasketItem bi JOIN FETCH bi.product WHERE bi.user = ?1")
-    List<BasketItem> findBasketItemsByUserId(User user);
+    List<BasketItem> findBasketItemsByUser(User user);
 
     @Modifying
     @Transactional

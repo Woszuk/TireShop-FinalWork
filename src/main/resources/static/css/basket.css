@@ -80,6 +80,13 @@
     font-size: 50px;
 }
 
+.basket_error {
+    color: red;
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
 .basket__info {
     position: relative;
     display: flex;

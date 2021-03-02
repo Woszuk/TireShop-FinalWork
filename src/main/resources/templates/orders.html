@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wulkanizacja Edek</title>
+
+    <link rel="icon" type="image/x-icon" href="/images/icon/tire.svg">
+    <link rel="stylesheet" href="/css/global.css">
+    <link rel="stylesheet" href="/css/main-navigation.css">
+    <link rel="stylesheet" href="/css/sign-in.css">
+    <link rel="stylesheet" href="/css/account-menu.css">
+    <link rel="stylesheet" href="/css/account-data.css">
+    <link rel="stylesheet" href="/css/order.css">
+</head>
+
+<body>
+<section class="banner__sign-in" th:replace="fragments/section-sign-in::section">
+</section>
+
+<section class="banner__sign-in banner__register" th:replace="fragments/section-registration::section">
+</section>
+
+<div class="scroll">
+    <nav class="main-navigation" th:replace="fragments/nav::nav">
+    </nav>
+    <section class="my-account__menu">
+        <div class="my-account__menu-container">
+            <div class="my-account__left" th:replace="fragments/div-menu-account::div">
+            </div>
+
+            <div class="my-account__right">
+                <div class="my-account__text">
+                    <h2 class="my-account__text-header" th:text="${'Witaj ' + loggedUser.firstName}"></h2>
+                </div>
+                <div class="orders__container">
+                    <h2 th:if="${orders.size() <=0}" class="order__header-empty">Brak zamówień</h2>
+                    <h2 th:if="${orders.size() >=1}" class="orders__header">Moje zamówienia</h2>
+                    <div th:each="order: ${orders}" th:if="${orders.size() >=1}" class="orders__info">
+                        <div class="orders__info-general">
+                            <div class="info-general__time">
+                                <p class="info-general__paragraph" th:text="'Data zamówienia: ' + ${order.date}"></p>
+                            </div>
+                            <div class="info-general__delivery">
+                                <p class="info-general__paragraph"
+                                   th:text="'Sposób dostawy: Kurier ' + ${order.delivery.name}"></p>
+                            </div>
+                            <div class="info-general__payment">
+                                <p class="info-general__paragraph"
+                                   th:text="'Rodzaj płatności: ' + ${order.paymentMethod.description}"></p>
+                            </div>
+                        </div>
+                        <div class="orders__info-item">
+                            <div th:each="orderProduct: ${order.orderProducts}" class="orders__info-position">
+                                <div class="orders__info-img">
+                                    <img th:if="${orderProduct.type == 'tire'}"
+                                         th:src="@{'/images/tire/' + ${orderProduct.img}}" alt="tire"
+                                         class="orders__img">
+                                    <img th:if="${orderProduct.type == 'wheel-rim'}"
+                                         th:src="@{'/images/wheel-rims/' + ${orderProduct.img}}" alt="wheel-rim"
+                                         class="orders__img">
+                                </div>
+                                <div class="order__item-info">
+                                    <p class="order__item-paragraph" th:text="${orderProduct.brand + ' ' + orderProduct.model + ' ' + orderProduct.size}"></p>
+                                    <span class="order__item-span" th:text="${orderProduct.quantity + ' x ' + orderProduct.price + ' zł'}"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="orders__info-price">
+                            <div class="orders__info-address">
+                                <p class="address__info">Adres dostawy:</p>
+                                <div class="orders__info-address--details">
+                                    <p th:if="${order.orderAddress.apartmentNumber != ''}" th:text="${order.orderAddress.street + ' ' + order.orderAddress.numberOfBuilding + '/' + order.orderAddress.apartmentNumber}"></p>
+                                    <p th:if="${order.orderAddress.apartmentNumber == ''}" th:text="${order.orderAddress.street + ' ' + order.orderAddress.numberOfBuilding}"></p>
+                                    <p th:text="${order.orderAddress.postalCode + ' ' + order.orderAddress.city}"></p>
+                                </div>
+                            </div>
+                            <p class="orders__info-price--paragraph">Razem z dostawą <span
+                                    class="orders__info-price--span" th:text="${(order.totalPrice + order.delivery.price) + ' zł'}"></span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<script src="/js/main-navigation.js"></script>
+<script src="/js/account-navigation.js"></script>
+<script src="/js/summary.js"></script>
+<script src="/js/account-menu.js"></script>
+</body>
+
+</html>
