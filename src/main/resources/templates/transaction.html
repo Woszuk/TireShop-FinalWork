@@ -38,7 +38,8 @@
                         <div class="address__info">
                             <div th:if="${loggedUser.address != null}">
                                 <p class="address__paragraph" th:text="${loggedUser.firstName + ' ' + loggedUser.lastName}"></p>
-                                <p class="address__paragraph" th:text="${loggedUser.address.street + ' ' + loggedUser.address.numberOfBuilding + '/' + loggedUser.address.apartmentNumber}"></p>
+                                <p th:if="${loggedUser.address.apartmentNumber != ''}" class="address__paragraph" th:text="${loggedUser.address.street + ' ' + loggedUser.address.numberOfBuilding + '/' + loggedUser.address.apartmentNumber}"></p>
+                                <p th:if="${loggedUser.address.apartmentNumber == ''}" class="address__paragraph" th:text="${loggedUser.address.street + ' ' + loggedUser.address.numberOfBuilding}"></p>
                                 <p class="address__paragraph" th:text="${loggedUser.address.postalCode + ' ' + loggedUser.address.city}"></p>
                                 <p class="address__paragraph" th:if="${loggedUser.phoneNumber != null}" th:text="${loggedUser.phoneNumber}"></p>
                                 <input th:if="${loggedUser.phoneNumber == null}" name="phoneNumber" class="address__input" placeholder="Numer Telefonu"
@@ -189,12 +190,12 @@
                         </div>
                         <div class="summary__info">
                             <div class="summary__price">
-                                <p class="summary__price-paragraph">Wartość przedmiotów:</p>
+                                <p class="summary__price-paragraph">Wartość przedmiotów: </p>
                                 <p class="summary__price-paragraph"><span
                                         class="summary__price-span itemPrice" th:text="${session.totalPrice}"></span> zł</p>
                             </div>
                             <div class="summary__price delivery">
-                                <p class="summary__price-paragraph">Dostawa:</p>
+                                <p class="summary__price-paragraph">Dostawa: </p>
                                 <p class="summary__price-paragraph"><span
                                         class="summary__price-span deliveryPrice"></span>
                                     zł</p>

@@ -1,6 +1,5 @@
 package pl.hejnar.tireshop.controller;
 
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,6 +7,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.hejnar.tireshop.entity.Address;
 import pl.hejnar.tireshop.entity.User;
+import pl.hejnar.tireshop.repository.OrderRepository;
 import pl.hejnar.tireshop.repository.UserRepository;
 import pl.hejnar.tireshop.service.AccountService;
 import pl.hejnar.tireshop.service.FeaturesService;
@@ -24,13 +24,15 @@ public class AccountController {
     private final AccountService accountService;
     private final FeaturesService featuresService;
     private final PasswordEncoder encoder;
+    private final OrderRepository orderRepository;
 
 
-    public AccountController(UserRepository userRepository, AccountService accountService, FeaturesService featuresService, PasswordEncoder encoder) {
+    public AccountController(UserRepository userRepository, AccountService accountService, FeaturesService featuresService, PasswordEncoder encoder, OrderRepository orderRepository) {
         this.userRepository = userRepository;
         this.accountService = accountService;
         this.featuresService = featuresService;
         this.encoder = encoder;
+        this.orderRepository = orderRepository;
     }
 
     @ModelAttribute("loggedUser")
@@ -120,5 +122,14 @@ public class AccountController {
             }
         }
         return "change-account-password";
+    }
+
+    @GetMapping("/orders")
+    public String orders(Model model, Principal principal, HttpSession ses) {
+        if(ses.getAttribute("userLoggedIn") == null){
+            featuresService.saveProductToUser(ses,principal);
+        }
+        model.addAttribute("orders", orderRepository.findAllByUser(userRepository.findByUsername(principal.getName())));
+        return "orders";
     }
 }

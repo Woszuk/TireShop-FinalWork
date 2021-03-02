@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import pl.hejnar.tireshop.entity.Address;
+import pl.hejnar.tireshop.entity.BasketItem;
 import pl.hejnar.tireshop.entity.User;
 import pl.hejnar.tireshop.repository.*;
 import pl.hejnar.tireshop.service.AccountService;
@@ -18,6 +19,7 @@ import pl.hejnar.tireshop.service.TransactionService;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.security.Principal;
+import java.util.List;
 
 @Controller
 public class TransactionController {
@@ -29,8 +31,9 @@ public class TransactionController {
     private final BasketItemRepository basketItemRepository;
     private final FeaturesService featuresService;
     private final AccountService accountService;
+    private final AddressRepository addressRepository;
 
-    public TransactionController(TransactionService transactionService, UserRepository userRepository, DeliveryRepository deliveryRepository, PaymentMethodRepository paymentMethodRepository, BasketItemRepository basketItemRepository, FeaturesService featuresService, AccountService accountService) {
+    public TransactionController(TransactionService transactionService, UserRepository userRepository, DeliveryRepository deliveryRepository, PaymentMethodRepository paymentMethodRepository, BasketItemRepository basketItemRepository, FeaturesService featuresService, AccountService accountService, AddressRepository addressRepository) {
         this.transactionService = transactionService;
         this.userRepository = userRepository;
         this.deliveryRepository = deliveryRepository;
@@ -38,6 +41,7 @@ public class TransactionController {
         this.basketItemRepository = basketItemRepository;
         this.featuresService = featuresService;
         this.accountService = accountService;
+        this.addressRepository = addressRepository;
     }
 
     @GetMapping("/transaction")
@@ -59,7 +63,7 @@ public class TransactionController {
         if(principal.getName() != null){
             User loggedUser = userRepository.findByUsername(principal.getName());
             model.addAttribute("loggedUser", loggedUser);
-            model.addAttribute("basket", basketItemRepository.findBasketItemsByUser(loggedUser));
+            model.addAttribute("basket", ses.getAttribute("basket"));
         }
 
         model.addAttribute("deliveries", deliveryRepository.findAll());
@@ -92,8 +96,15 @@ public class TransactionController {
             userRepository.updatePhoneNumber(phoneNumber, userRepository.findByUsername(principal.getName()).getId());
         }
 
-        transactionService.saveOrder(delivery, paymentMethod, principal, ses);
+        if(address.getStreet() == null){
+            address = addressRepository.getOne(userRepository.findByUsername(principal.getName()).getAddress().getId());
+        }
 
-        return "redirect:/";
+        transactionService.saveOrder(delivery, paymentMethod, principal, ses, address);
+
+        if(ses.getAttribute("errorItem") != null) {
+            return "redirect:/basket";
+        }
+        return "redirect:/account/orders";
     }
 }

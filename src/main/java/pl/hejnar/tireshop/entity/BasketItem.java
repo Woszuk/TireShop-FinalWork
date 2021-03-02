@@ -9,7 +9,7 @@ public class BasketItem {
     private Long id;
     private int quantity;
     @ManyToOne
-    private Product product;
+    private ShopProduct product;
     @ManyToOne
     private User user;
 
@@ -34,11 +34,11 @@ public class BasketItem {
         return this;
     }
 
-    public Product getProduct() {
+    public ShopProduct getProduct() {
         return product;
     }
 
-    public BasketItem setProduct(Product product) {
+    public BasketItem setProduct(ShopProduct product) {
         this.product = product;
         return this;
     }

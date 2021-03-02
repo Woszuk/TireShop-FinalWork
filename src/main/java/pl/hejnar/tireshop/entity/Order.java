@@ -4,8 +4,8 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "purchase_order")
@@ -17,13 +17,17 @@ public class Order {
     private BigDecimal totalPrice;
     @ManyToOne
     private User user;
-    @ManyToMany
-    @MapKey(name = "price")
-    private Map<BigDecimal, Product> products = new HashMap<>();
+    @OneToMany
+    private List<OrderProduct> orderProducts = new ArrayList<>();
     @OneToOne
     private Delivery delivery;
     @OneToOne
     private PaymentMethod paymentMethod;
+    @ManyToOne
+    private OrderAddress orderAddress;
+
+    public Order() {
+    }
 
     public Long getId() {
         return id;
@@ -40,15 +44,6 @@ public class Order {
 
     public Order setUser(User user) {
         this.user = user;
-        return this;
-    }
-
-    public Map<BigDecimal, Product> getProducts() {
-        return products;
-    }
-
-    public Order setProducts(Map<BigDecimal, Product> products) {
-        this.products = products;
         return this;
     }
 
@@ -92,6 +87,24 @@ public class Order {
 
     public Order setTotalPrice(BigDecimal totalPrice) {
         this.totalPrice = totalPrice;
+        return this;
+    }
+
+    public List<OrderProduct> getOrderProducts() {
+        return orderProducts;
+    }
+
+    public Order setOrderProducts(List<OrderProduct> orderProducts) {
+        this.orderProducts = orderProducts;
+        return this;
+    }
+
+    public OrderAddress getOrderAddress() {
+        return orderAddress;
+    }
+
+    public Order setOrderAddress(OrderAddress orderAddress) {
+        this.orderAddress = orderAddress;
         return this;
     }
 }

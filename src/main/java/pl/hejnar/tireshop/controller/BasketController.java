@@ -27,6 +27,10 @@ public class BasketController {
 
     @GetMapping("/basket")
     public String basket(HttpSession ses, Model model){
+        if(ses.getAttribute("errorItem") != null){
+            model.addAttribute("errorItem", true);
+            ses.removeAttribute("errorItem");
+        }
         ses.setAttribute("currentPage", "basket");
         basketService.productInSession(ses,model);
         return "basket";

@@ -1,6 +1,7 @@
 package pl.hejnar.tireshop.service;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import pl.hejnar.tireshop.entity.*;
 import pl.hejnar.tireshop.repository.*;
 
@@ -8,9 +9,7 @@ import javax.servlet.http.HttpSession;
 import java.math.BigDecimal;
 import java.security.Principal;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Service
 public class TransactionServiceImpl implements TransactionService {
@@ -20,15 +19,19 @@ public class TransactionServiceImpl implements TransactionService {
     private final OrderRepository orderRepository;
     private final DeliveryRepository deliveryRepository;
     private final PaymentMethodRepository paymentMethodRepository;
-    private final ProductRepository productRepository;
+    private final ShopProductRepository shopProductRepository;
+    private final OrderProductRepository orderProductRepository;
+    private final OrderAddressRepository orderAddressRepository;
 
-    public TransactionServiceImpl(BasketItemRepository basketItemRepository, UserRepository userRepository, OrderRepository orderRepository, DeliveryRepository deliveryRepository, PaymentMethodRepository paymentMethodRepository, ProductRepository productRepository) {
+    public TransactionServiceImpl(BasketItemRepository basketItemRepository, UserRepository userRepository, OrderRepository orderRepository, DeliveryRepository deliveryRepository, PaymentMethodRepository paymentMethodRepository, ShopProductRepository shopProductRepository, OrderProductRepository orderProductRepository, OrderAddressRepository orderAddressRepository) {
         this.basketItemRepository = basketItemRepository;
         this.userRepository = userRepository;
         this.orderRepository = orderRepository;
         this.deliveryRepository = deliveryRepository;
         this.paymentMethodRepository = paymentMethodRepository;
-        this.productRepository = productRepository;
+        this.shopProductRepository = shopProductRepository;
+        this.orderProductRepository = orderProductRepository;
+        this.orderAddressRepository = orderAddressRepository;
     }
 
     @Override
@@ -47,13 +50,14 @@ public class TransactionServiceImpl implements TransactionService {
     }
 
     @Override
-    public void saveOrder(String delivery, String paymentMethod, Principal principal, HttpSession ses) {
+    public void saveOrder(String delivery, String paymentMethod, Principal principal, HttpSession ses, Address address) {
         List<BasketItem> basketItemList = new ArrayList<>();
-        Map<BigDecimal, Product> productBigDecimalMap = new HashMap<>();
+        List<OrderProduct> orderProducts = new ArrayList<>();
         Delivery del = deliveryRepository. findByName(delivery);
         PaymentMethod payMet = paymentMethodRepository.findByType(paymentMethod);
         BigDecimal totalPrice = (BigDecimal)ses.getAttribute("totalPrice");
         User user = userRepository.findByUsername(principal.getName());
+        Boolean check = true;
 
         if(principal.getName() != null){
             basketItemList = basketItemRepository.findBasketItemsByUser(user);
@@ -65,16 +69,40 @@ public class TransactionServiceImpl implements TransactionService {
                 .setPaymentMethod(payMet)
                 .setUser(user);
 
+        orderRepository.save(order);
+
         for(BasketItem basketItem: basketItemList){
             basketItem = basketItemRepository.findBasketItemById(basketItem.getId());
-            productBigDecimalMap.put(basketItem.getProduct().getPrice(), basketItem.getProduct());
-            productRepository.updateQuantity(basketItem.getQuantity(), basketItem.getProduct().getId());
-            basketItemRepository.delete(basketItem);
+            if(basketItem.getProduct().getQuantity() < basketItem.getQuantity()){
+                ses.setAttribute("errorItem", true);
+                check = false;
+                break;
+            }
         }
 
-        order.setProducts(productBigDecimalMap);
+        if(check){
+            for(BasketItem basketItem: basketItemList){
+                basketItem = basketItemRepository.findBasketItemById(basketItem.getId());
+                Product product = basketItem.getProduct();
+                OrderProduct orderProduct = new OrderProduct(product.getImg(), product.getType(), product.getBrand(), product.getModel(), product.getSize(), product.getPrice(), basketItem.getQuantity(), user, order);
+                orderProducts.add(orderProduct);
+                orderProductRepository.save(orderProduct);
+                shopProductRepository.updateQuantity(basketItem.getQuantity(), basketItem.getProduct().getId());
+                basketItemRepository.delete(basketItem);
+            }
 
-        ses.removeAttribute("basket");
-        orderRepository.save(order);
+            OrderAddress orderAddress = new OrderAddress()
+                    .setCity(address.getCity())
+                    .setApartmentNumber(address.getApartmentNumber())
+                    .setStreet(address.getStreet())
+                    .setPostalCode(address.getPostalCode())
+                    .setNumberOfBuilding(address.getNumberOfBuilding());
+
+            orderAddressRepository.save(orderAddress);
+            order.setOrderAddress(orderAddress);
+            order.setOrderProducts(orderProducts);
+            ses.removeAttribute("basket");
+            orderRepository.save(order);
+        }
     }
 }
