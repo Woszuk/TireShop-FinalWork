@@ -6,6 +6,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import pl.hejnar.tireshop.entity.User;
 import pl.hejnar.tireshop.service.FeaturesService;
@@ -25,20 +26,18 @@ public class HomeController {
         this.featuresService = featuresService;
     }
 
-    @ModelAttribute("user")
-    public User newUser() {
-        return new User();
-    }
-
     @GetMapping("/")
     public String home(Model model, HttpSession ses) {
+        if(!model.containsAttribute("user") || model.containsAttribute("successfullyRegistered")){
+            model.addAttribute("user", new User());
+        }
         ses.setAttribute("currentPage", "home");
         return "home";
     }
 
     @PostMapping("/")
-    public String registration(@ModelAttribute("user") @Valid User user, BindingResult result, RedirectAttributes redAttr, HttpSession ses) {
-        boolean check = userService.checkUser(user, redAttr);
+    public String registration(@ModelAttribute("user") @Valid User user, BindingResult result, @RequestParam("repeatPassword") String repeatPassword, RedirectAttributes redAttr, HttpSession ses) {
+        boolean check = userService.checkUserAndPassword(user, redAttr, repeatPassword);
 
         if (result.hasErrors()) {
             redAttr.addFlashAttribute("org.springframework.validation.BindingResult.user", result);

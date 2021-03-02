@@ -10,5 +10,5 @@ public interface UserService {
 
     void save(User user, RedirectAttributes redAttr);
 
-    boolean checkUser (User user, RedirectAttributes redAttr);
+    boolean checkUserAndPassword (User user, RedirectAttributes redAttr, String repeatPassword);
 }
