@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import pl.hejnar.tireshop.entity.Address;
-import pl.hejnar.tireshop.entity.BasketItem;
 import pl.hejnar.tireshop.entity.User;
 import pl.hejnar.tireshop.repository.*;
 import pl.hejnar.tireshop.service.AccountService;
@@ -19,7 +18,6 @@ import pl.hejnar.tireshop.service.TransactionService;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.security.Principal;
-import java.util.List;
 
 @Controller
 public class TransactionController {

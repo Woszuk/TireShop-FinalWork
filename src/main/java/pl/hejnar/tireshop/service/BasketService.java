@@ -1,12 +1,8 @@
 package pl.hejnar.tireshop.service;
 
 import org.springframework.ui.Model;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import pl.hejnar.tireshop.entity.BasketItem;
 
 import javax.servlet.http.HttpSession;
-import java.security.Principal;
-import java.util.List;
 
 public interface BasketService {
 

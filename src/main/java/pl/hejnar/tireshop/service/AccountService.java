@@ -1,6 +1,5 @@
 package pl.hejnar.tireshop.service;
 
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.ui.Model;
 import pl.hejnar.tireshop.entity.Address;

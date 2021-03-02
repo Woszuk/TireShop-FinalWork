@@ -1,7 +1,6 @@
 package pl.hejnar.tireshop.service;
 
 import org.springframework.stereotype.Service;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import pl.hejnar.tireshop.entity.*;
 import pl.hejnar.tireshop.repository.*;
 
