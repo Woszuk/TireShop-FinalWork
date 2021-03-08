@@ -1,13 +1,19 @@
 package pl.hejnar.tireshop.service;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 import pl.hejnar.tireshop.entity.BasketItem;
+import pl.hejnar.tireshop.entity.ShopProduct;
 import pl.hejnar.tireshop.entity.User;
 import pl.hejnar.tireshop.repository.BasketItemRepository;
 import pl.hejnar.tireshop.repository.ShopProductRepository;
 import pl.hejnar.tireshop.repository.UserRepository;
 
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
@@ -59,5 +65,38 @@ public class ShopServiceImpl implements ShopService {
         }
 
         ses.setAttribute("basket", basketItemList);
+    }
+
+    @Override
+    public void editData(ShopProduct shopProduct, MultipartFile file, Long id) {
+        ShopProduct shopProductInDB = shopProductRepository.getOne(id);
+        shopProduct.setType(shopProductInDB.getType());
+        shopProduct.setId(id);
+
+        String name = null;
+        if(!file.isEmpty()) {
+            try {
+                byte[] bytes = file.getBytes();
+                Path path;
+                if(shopProduct.getType().equals("tire")){
+                    path = Paths.get("E:\\CodersLab\\TireShop - FinalWork\\src\\main\\resources\\static\\images\\tire\\" + file.getOriginalFilename());
+                }else {
+                    path = Paths.get("E:\\CodersLab\\TireShop - FinalWork\\src\\main\\resources\\static\\images\\wheel-rims\\" + file.getOriginalFilename());
+                }
+
+                Files.write(path, bytes);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            name = file.getOriginalFilename();
+        }
+
+        if(name != null){
+            shopProduct.setImg(name);
+        }else {
+            shopProduct.setImg(shopProductInDB.getImg());
+        }
+
+        shopProductRepository.save(shopProduct);
     }
 }

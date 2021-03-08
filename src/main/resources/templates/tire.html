@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://thymeleaf.org">
+<html lang="en" xmlns:th="http://thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 
 <head>
     <meta charset="UTF-8">
@@ -35,42 +35,58 @@
                 <div class="menu-shop__content-items">
                     <ul class="menu-shop__content-list">
                         <li class="menu-shop__content-item" th:each="tire : ${tires}">
-                            <div class="menu-shop__info">
-                                <div class="menu-shop__img-position">
-                                    <img th:src="@{'/images/tire/' + ${tire.img}}" alt="tire" class="menu-shop__img">
-                                </div>
-                                <div class="menu-shop__content-parameters">
-                                    <span class="menu-shop__content-span producer" th:text="${tire.brand}"></span>
-                                    <span class="menu-shop__content-span model" th:text="${tire.model}"></span>
-                                    <span class="menu-shop__content-span size" th:text="${tire.size}"></span>
-                                </div>
+                            <span sec:authorize="hasRole('ROLE_ADMIN')" class="menu__dots"></span>
+                            <div class="menu__dots-info">
+                                <ul class="menu__dots-list">
+                                    <li class="menu__dots-item edit">Edytuj</li>
+                                    <li class="menu__dots-item delete">Usuń</li>
+                                </ul>
                             </div>
-                            <div class="menu-shop__content-details">
-                                <div class="menu-shop__content-detail">
-                                        <span class="menu-shop__content-span price">Cena: <strong
+                            <div class="menu-shop__info-container">
+                                <div class="menu-shop__info">
+                                    <div class="menu-shop__img-position">
+                                        <img th:src="@{'/images/tire/' + ${tire.img}}" alt="tire"
+                                             class="menu-shop__img">
+                                        <input type="file" id="file-upload" name="file" class="img__file"
+                                               accept="image/*">
+                                        <label for="file-upload" class="img__file-label">Wybierz</label>
+                                    </div>
+                                    <div class="menu-shop__content-parameters">
+                                        <span class="menu-shop__content-span brand" th:text="${tire.brand}"></span>
+                                        <span class="menu-shop__content-span model" th:text="${tire.model}"></span>
+                                        <span class="menu-shop__content-span size" th:text="${tire.size}"></span>
+                                    </div>
+                                </div>
+                                <div class="menu-shop__content-details">
+                                    <div class="menu-shop__content-detail">
+                                        <span class="menu-shop__content-span price position">Cena: <strong
                                                 th:text="${tire.price}"></strong>
                                             zł/szt.</span>
-                                    <span class="menu-shop__content-span availability">Dostępnych sztuk:
+                                        <span class="menu-shop__content-span quantity position">Dostępnych sztuk:
                                             <strong th:text="${tire.quantity}"></strong></span>
-                                    <div class="menu-shop__content-buy">
-                                        <span class="menu-shop__content-span availability">Ilość: </span>
-                                        <form th:action="@{/shop/addToBasket}" method="post">
-                                            <select class="menu-shop__select" name="quantityToBuy">
-                                                <option th:each="i : ${#numbers.sequence(1,tire.quantity)}"
-                                                        th:text="${i} + ' szt.'" th:if="${tire.quantity >= 1 AND i<=4}"
-                                                        th:value="${i}" class="menu-shop__select-option"></option>
-                                                <option th:each="i : ${#numbers.sequence(1,4)}" th:text="${i} + ' szt.'"
-                                                        th:if="${tire.quantity < 1}"
-                                                        class="menu-shop__select-option"></option>
-                                            </select>
-                                            <input type="submit" th:if="${tire.quantity >= 1}"
-                                                   class="menu-shop__content-basket" value="Do koszyka"/>
-                                            <input type="submit" th:if="${tire.quantity < 1}"
-                                                   class="menu-shop__content-basket" value="Do koszyka"
-                                                   disabled/>
-                                            <input type="hidden" name="productId" th:value="${tire.id}">
-                                            <input type="hidden" name="scrollTo" th:value="${scrollTo}">
-                                        </form>
+                                        <input type="hidden" name="productId" th:value="${tire.id}">
+                                        <div class="menu-shop__content-buy">
+                                            <span class="menu-shop__content-span availability">Ilość: </span>
+                                            <form th:action="@{/shop/addToBasket}" method="post">
+                                                <select class="menu-shop__select" name="quantityToBuy">
+                                                    <option th:each="i : ${#numbers.sequence(1,tire.quantity)}"
+                                                            th:text="${i} + ' szt.'"
+                                                            th:if="${tire.quantity >= 1 AND i<=4}"
+                                                            th:value="${i}" class="menu-shop__select-option"></option>
+                                                    <option th:each="i : ${#numbers.sequence(1,4)}"
+                                                            th:text="${i} + ' szt.'"
+                                                            th:if="${tire.quantity < 1}"
+                                                            class="menu-shop__select-option"></option>
+                                                </select>
+                                                <input type="submit" th:if="${tire.quantity >= 1}"
+                                                       class="menu-shop__content-basket" value="Do koszyka"/>
+                                                <input type="submit" th:if="${tire.quantity < 1}"
+                                                       class="menu-shop__content-basket" value="Do koszyka"
+                                                       disabled/>
+                                                <input type="hidden" name="productId" th:value="${tire.id}">
+                                                <input type="hidden" name="scrollTo" th:value="${scrollTo}">
+                                            </form>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -86,6 +102,7 @@
 <script src="/js/main-navigation.js"></script>
 <script src="/js/account-navigation.js"></script>
 <script src="/js/scroll.js"></script>
+<script src="/js/shop-update.js"></script>
 </body>
 
 </html>
