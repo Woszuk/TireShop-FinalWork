@@ -16,14 +16,40 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     dotsItemEdit.forEach(el => el.addEventListener("click" ,function(){
+        if(document.querySelector(".new-item") != null){
+            document.querySelector(".new-item").remove();
+        }
         el.parentElement.parentElement.classList.toggle("info-active")
         let li = el.parentElement.parentElement.parentElement;
         if(!li.classList.contains("item-edit")){
+            if(document.querySelector(".item-edit")){
+                changeItemEdit()
+            }
             li.classList.toggle("item-edit")
+            createInputFile(li)
             changeData(li)
             form(li)
         }
     }))
+
+    function changeItemEdit(){
+        let liItemEdit = document.querySelector(".menu-shop__content-item.item-edit");
+        liItemEdit.classList.remove("item-edit");
+        if(liItemEdit.querySelector(".menu-shop__img.new") != null){
+            liItemEdit.querySelector(".menu-shop__img.new").remove();
+        }
+        if(liItemEdit.querySelector(".span__error-file") != null){
+            liItemEdit.querySelector(".span__error-file").remove();
+        }
+        liItemEdit.querySelector(".menu-shop__content-basket.submit").remove();
+        let detail = liItemEdit.querySelectorAll(".input__parameters.detail");
+        let detailStrong = liItemEdit.querySelectorAll("strong");
+        detailStrong[0].innerHTML = detail[0].value + ".00";
+        detailStrong[1].innerHTML = detail[1].value;
+
+        liItemEdit.querySelectorAll(".input__parameters").forEach(el => el.remove());
+        liItemEdit.querySelectorAll(".input").forEach(el => el.classList.remove("input"));
+    }
 
     function changeData(li) {
         let parameters = li.querySelector(".menu-shop__content-parameters").querySelectorAll(".menu-shop__content-span");
@@ -38,6 +64,62 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         save(li.querySelector(".menu-shop__content-buy"), li.querySelector(".menu-shop__content-detail"))
+    }
+
+    function createInputFile (li){
+        if(document.querySelector(".img__file") != null){
+            document.querySelector(".img__file").remove();
+            document.querySelector(".img__file-label").remove();
+        }
+        let input = document.createElement("input");
+        input.type = "file";
+        input.id = "file-upload";
+        input.name = "file"
+        input.accept = "image/*"
+        input.className = "img__file";
+        li.querySelector(".menu-shop__img-position").appendChild(input);
+        input.onchange = function() {
+            if(this.files[0].size > 20971520){
+                if(document.querySelector(".span__error-file") == null){
+                    let form = li.querySelector("form");
+                    let divError = document.createElement("div");
+                    divError.className = "span__error-file"
+                    divError.innerHTML = "Wybrany plik jest za duży";
+
+                    li.insertBefore(divError, form);
+                    this.value = "";
+                }
+            }else {
+                let img;
+                if(li.querySelector(".menu-shop__img.new") == null){
+                    img = document.createElement("img");
+                    img.className = "menu-shop__img new";
+                    li.querySelector(".menu-shop__img-position").insertBefore(img, li.querySelector(".img__file"))
+                }else {
+                    img = li.querySelector(".menu-shop__img.new")
+                }
+                const file = document.querySelector('input[type=file]').files[0];
+                const reader = new FileReader();
+
+                reader.addEventListener("load", function () {
+                    img.src = reader.result;
+                }, false);
+
+                if (file) {
+                    reader.readAsDataURL(file);
+                }
+                if(document.querySelector(".span__error-file") != null){
+                    document.querySelector(".span__error-file").remove();
+                }
+            }
+        }
+
+        let label = document.createElement("label")
+        label.setAttribute("for", "file-upload")
+        label.className = "img__file-label"
+        label.innerHTML = "Wybierz";
+
+        li.querySelector(".menu-shop__img-position").appendChild(label);
     }
 
     function createInputParameter(parameter) {
@@ -74,7 +156,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function save(buy, detail) {
-        detail.removeChild(buy);
+        buy.classList.add("input")
         let input = document.createElement("input");
         input.className = ("menu-shop__content-basket submit")
         input.type = "submit";
@@ -92,7 +174,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
         li.insertBefore(form, li.querySelector(".menu-shop__info-container"));
 
-        let forms = li.querySelector(".form__edit")
-        forms.appendChild(li.querySelector(".menu-shop__info-container"))
+        form.appendChild(li.querySelector(".menu-shop__info-container"))
     }
 })

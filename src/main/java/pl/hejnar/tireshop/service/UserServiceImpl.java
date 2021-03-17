@@ -38,6 +38,7 @@ public class UserServiceImpl implements UserService {
         userRepository.save(user);
         redAttr.addFlashAttribute("someChange", true);
         redAttr.addFlashAttribute("successfullyRegistered", true);
+        redAttr.addFlashAttribute("user", new User());
     }
 
     @Override

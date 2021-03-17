@@ -10,4 +10,6 @@ public interface ShopService {
     void addToBasket(int quantityToBuy, Long id, HttpSession ses, Principal principal);
 
     void editData(ShopProduct shopProduct, MultipartFile file, Long id);
+
+    void addNewProduct(ShopProduct shopProduct, MultipartFile file, HttpSession ses);
 }

@@ -73,8 +73,33 @@ public class ShopServiceImpl implements ShopService {
         shopProduct.setType(shopProductInDB.getType());
         shopProduct.setId(id);
 
+        String name = uploadFile(file, shopProduct);
+
+        if(name != null){
+            shopProduct.setImg(name);
+        }else {
+            shopProduct.setImg(shopProductInDB.getImg());
+        }
+
+        shopProductRepository.save(shopProduct);
+    }
+
+    @Override
+    public void addNewProduct(ShopProduct shopProduct, MultipartFile file, HttpSession ses){
+        if(ses.getAttribute("currentPage").equals("tire")){
+            shopProduct.setType("tire");
+        }else {
+            shopProduct.setType("wheel-rim");
+        }
+        String name = uploadFile(file, shopProduct);
+        shopProduct.setImg(name);
+
+        shopProductRepository.save(shopProduct);
+    }
+
+    private String uploadFile(MultipartFile file, ShopProduct shopProduct) {
         String name = null;
-        if(!file.isEmpty()) {
+        if(!file.isEmpty()){
             try {
                 byte[] bytes = file.getBytes();
                 Path path;
@@ -91,12 +116,6 @@ public class ShopServiceImpl implements ShopService {
             name = file.getOriginalFilename();
         }
 
-        if(name != null){
-            shopProduct.setImg(name);
-        }else {
-            shopProduct.setImg(shopProductInDB.getImg());
-        }
-
-        shopProductRepository.save(shopProduct);
+        return name;
     }
 }
