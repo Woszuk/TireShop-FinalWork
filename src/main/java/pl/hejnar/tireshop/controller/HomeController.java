@@ -28,7 +28,7 @@ public class HomeController {
 
     @GetMapping("/")
     public String home(Model model, HttpSession ses) {
-        if(!model.containsAttribute("user") || model.containsAttribute("successfullyRegistered")){
+        if(!model.containsAttribute("user")){
             model.addAttribute("user", new User());
         }
         ses.setAttribute("currentPage", "home");
