@@ -5,6 +5,7 @@
     <div class="sign-in__container">
         <h2 class="sign-in__header">Zaloguj się</h2>
         <span th:if="${loginError != null}" class="sign-in__form-error sign-in">Nazwa użytkownika lub hasło jest niepoprawne</span>
+        <span th:if="${sessionExpire != null}" class="sign-in__form-error sign-in">Twoja sesja wygasła, zaloguj się jeszcze raz</span>
         <form method="post" th:action="@{/login}" class="sign-in__form">
             <div class="sign-in__form-item">
                 <div class="sign-in__field">

@@ -1,12 +1,14 @@
 package pl.hejnar.tireshop.entity;
 
+import org.springframework.security.core.userdetails.UserDetails;
+
 import javax.persistence.*;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.util.Set;
 
 @Entity
-public class User {
+public class User{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -29,6 +31,7 @@ public class User {
     private Set<Role> roles;
     @OneToOne
     private Address address;
+    private boolean enabled = true;
 
     public User() {
     }
@@ -111,6 +114,15 @@ public class User {
 
     public User setAddress(Address address) {
         this.address = address;
+        return this;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public User setEnabled(boolean enabled) {
+        this.enabled = enabled;
         return this;
     }
 }
