@@ -6,8 +6,10 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.hejnar.tireshop.entity.Address;
+import pl.hejnar.tireshop.entity.Role;
 import pl.hejnar.tireshop.entity.User;
 import pl.hejnar.tireshop.repository.OrderRepository;
+import pl.hejnar.tireshop.repository.RoleRepository;
 import pl.hejnar.tireshop.repository.UserRepository;
 import pl.hejnar.tireshop.service.AccountService;
 import pl.hejnar.tireshop.service.FeaturesService;
@@ -15,6 +17,8 @@ import pl.hejnar.tireshop.service.FeaturesService;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.security.Principal;
+import java.util.HashSet;
+import java.util.Set;
 
 @Controller
 @RequestMapping("/account")
@@ -25,14 +29,15 @@ public class AccountController {
     private final FeaturesService featuresService;
     private final PasswordEncoder encoder;
     private final OrderRepository orderRepository;
+    private final RoleRepository roleRepository;
 
-
-    public AccountController(UserRepository userRepository, AccountService accountService, FeaturesService featuresService, PasswordEncoder encoder, OrderRepository orderRepository) {
+    public AccountController(UserRepository userRepository, AccountService accountService, FeaturesService featuresService, PasswordEncoder encoder, OrderRepository orderRepository, RoleRepository roleRepository) {
         this.userRepository = userRepository;
         this.accountService = accountService;
         this.featuresService = featuresService;
         this.encoder = encoder;
         this.orderRepository = orderRepository;
+        this.roleRepository = roleRepository;
     }
 
     @ModelAttribute("loggedUser")
@@ -131,5 +136,23 @@ public class AccountController {
         }
         model.addAttribute("orders", orderRepository.findAllByUser(userRepository.findByUsername(principal.getName())));
         return "orders";
+    }
+
+    @GetMapping("/users")
+    public String users(Model model){
+        model.addAttribute("users", userRepository.findAll());
+        return "users";
+    }
+
+    @GetMapping("/users/block")
+    private String changeBlock (@RequestParam String username){
+        accountService.userLockChange(username);
+        return "redirect:/account/users";
+    }
+
+    @GetMapping("/users/admin")
+    public String changeAdmin(@RequestParam String username){
+        accountService.changeAdmin(username);
+        return "redirect:/account/users";
     }
 }

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wulkanizacja Edek</title>
+
+    <link rel="icon" type="image/x-icon" href="/images/icon/tire.svg">
+    <link rel="stylesheet" href="/css/global.css">
+    <link rel="stylesheet" href="/css/main-navigation.css">
+    <link rel="stylesheet" href="/css/sign-in.css">
+    <link rel="stylesheet" href="/css/account-menu.css">
+    <link rel="stylesheet" href="/css/account-data.css">
+    <link rel="stylesheet" href="/css/users.css">
+
+
+</head>
+
+<body>
+<section class="banner__sign-in" th:replace="fragments/section-sign-in::section">
+</section>
+
+<section class="banner__sign-in banner__register" th:replace="fragments/section-registration::section">
+</section>
+
+<div class="scroll">
+    <nav class="main-navigation" th:replace="fragments/nav::nav">
+    </nav>
+    <section class="my-account__menu">
+        <div class="my-account__menu-container">
+            <div class="my-account__left" th:replace="fragments/div-menu-account::div">
+            </div>
+
+            <div class="my-account__right">
+                <div class="my-account__text">
+                    <h2 class="my-account__text-header" th:text="${'Witaj ' + loggedUser.firstName}"></h2>
+                </div>
+                <div class="user-position">
+                    <div class="user__info">
+                        <div class="user__info-type">
+                            <h2 class="user__info-header">Użytkownicy</h2>
+                        </div>
+                        <div class="user__info-data">
+                            <table class="table">
+                                <tr class="table__row">
+                                    <th class="table__header id">Id</th>
+                                    <th class="table__header">Nazwa użytkownika</th>
+                                    <th class="table__header">Blokada konta</th>
+                                    <th class="table__header">Administrator</th>
+                                </tr>
+                                <tr th:each="user :${users}">
+                                    <td class="table__cell id" th:text="${user.id}"></td>
+                                    <td class="table__cell" th:text="${user.username}"></td>
+                                    <td class="table__cell block">
+                                        <div class="table-link">
+                                            <a th:href="@{'/account/users/block?username=' + ${user.username}}">
+                                                <div th:if="${user.enabled == true}" class="checkbox"></div>
+                                                <div th:if="${user.enabled != true}" class="checkbox block"></div>
+                                            </a>
+                                        </div>
+                                    </td>
+                                    <td class="table__cell admin">
+                                        <div class="table-link">
+                                            <a th:href="@{'/account/users/admin?username=' + ${user.username}}">
+                                                <div th:if="${user.roles.size() >=2}" class="checkbox admin"></div>
+                                                <div th:if="${user.roles.size() <2}" class="checkbox"></div>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<script src="/js/main-navigation.js"></script>
+<script src="/js/account-navigation.js"></script>
+<script src="/js/summary.js"></script>
+<script src="/js/account-menu.js"></script>
+</body>
+
+</html>

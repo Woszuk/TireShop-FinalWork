@@ -27,5 +27,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 menu[i].classList.add("active");
             }
         }
+         if (location.href.indexOf("account/users") > -1) {
+            if (menu[i].querySelector("a[href='/account/users']")) {
+                menu[i].classList.add("active");
+            }
+        }
     }
 })

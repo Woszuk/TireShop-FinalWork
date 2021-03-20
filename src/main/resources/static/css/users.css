@@ -1,0 +1,64 @@
+.user__info-type {
+    margin-bottom: 10px;
+}
+
+.user__info-header {
+    text-align: center;
+}
+
+.table {
+    margin: auto;
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+.table__header {
+    padding: 8px;
+    border: 1px solid black;
+}
+
+.table__cell {
+    height: 50px;
+    padding: 8px;
+    text-align: center;
+    border: 1px solid black;
+}
+
+.table-link {
+    width: 20px;
+    height: 20px;
+    margin: auto;
+}
+
+.checkbox {
+    position: relative;
+    width: 20px;
+    height: 20px;
+    background: #ddd;
+    border-radius: 5px;
+    border: 1px solid black;
+    cursor: pointer;
+    margin: auto;
+}
+
+.checkbox.admin {
+    background: rgb(10, 212, 10);
+}
+
+.checkbox.block {
+    background: rgb(246, 12, 12);
+}
+
+.checkbox.block::before,
+.checkbox.admin::before {
+    content: "";
+    position: absolute;
+    left: 5px;
+    top: 1px;
+    display: block;
+    width: 8px;
+    height: 13px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(35deg);
+}

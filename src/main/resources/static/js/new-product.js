@@ -19,6 +19,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 form(newItem)
             }else {
                 let newItem = document.querySelector(".menu-shop__content-item.new-item");
+                let brandFocus = newItem.querySelector(".brand").focus();
                 const interval = setInterval(function (){
                     newItem.classList.toggle("green");
                 }, 500)

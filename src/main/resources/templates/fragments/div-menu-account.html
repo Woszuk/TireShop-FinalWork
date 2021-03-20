@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pl" xmlns:th="http://thymeleaf.org" >
+<html lang="pl" xmlns:th="http://thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <div class="my-account__left">
     <ul class="my-account__menu-list">
         <li class="my-account__menu-item">
@@ -16,6 +16,9 @@
         </li>
         <li class="my-account__menu-item">
             <a th:href="@{/account/change/password}" class="my-account__item--link">Zmiana hasła</a>
+        </li>
+        <li class="my-account__menu-item">
+            <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/account/users}" class="my-account__item--link">Użytkownicy</a>
         </li>
     </ul>
 </div>

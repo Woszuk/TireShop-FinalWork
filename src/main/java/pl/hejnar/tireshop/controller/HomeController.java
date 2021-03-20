@@ -54,7 +54,10 @@ public class HomeController {
     }
 
     @GetMapping("/login")
-    public String login(RedirectAttributes redirectAttributes, HttpSession ses) {
+    public String login(RedirectAttributes redirectAttributes, HttpSession ses, @RequestParam(required = false) boolean sessionExpire) {
+        if(sessionExpire){
+            redirectAttributes.addFlashAttribute("sessionExpire", true);
+        }
         redirectAttributes.addFlashAttribute("login", true);
         return featuresService.goToPage(ses);
     }

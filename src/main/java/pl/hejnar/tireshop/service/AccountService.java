@@ -16,4 +16,8 @@ public interface AccountService {
     void changeDetailsForUser(User changeUser);
 
     boolean changePassword(String oldPassword, String newPassword, String repeatPassword, PasswordEncoder encoder, Principal principal, Model model);
+
+    void userLockChange(String username);
+
+    void changeAdmin(String username);
 }
